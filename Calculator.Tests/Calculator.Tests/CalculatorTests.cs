@@ -178,19 +178,7 @@ namespace Calculator.Tests
 
         }
 
-        [Test]
-        public void TestDepositAmountLeight()
-        {
-            browser.FindElement(By.Id("amount")).SendKeys("1000000");
-            browser.FindElement(By.Id("percent")).SendKeys("10");
-            browser.FindElement(By.Id("term")).SendKeys("365");
-            browser.FindElement(By.Id("d365")).Click();
-            string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
-            Assert.AreEqual("1100000.00", actualIncome);
-            string actualInterest = browser.FindElement(By.Id("interest")).GetAttribute("value");
-            Assert.AreEqual("100000.00", actualInterest);
-
-        }
+        
 
 
     }

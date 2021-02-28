@@ -147,8 +147,21 @@ namespace Calculator.Tests
 
         }
 
+        [Test]
+        public void LoginFieldName()
+        {
+            string LoginName = browser.FindElement(By.ClassName("user")).GetAttribute ("innerText");
+            Assert.AreEqual("User", LoginName);
 
+        }
 
+        [Test]
+        public void PasswordFieldName()
+        {
+            string PasswordName = browser.FindElement(By.ClassName("pass")).GetAttribute("innerText");
+            Assert.AreEqual("Password", PasswordName);
+
+        }
 
 
 
