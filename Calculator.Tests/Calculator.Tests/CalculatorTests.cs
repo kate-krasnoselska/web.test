@@ -6,8 +6,8 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Calculator.Tests
 {
-	public class CalculatorTests
-	{
+    public class CalculatorTests
+    {
         IWebDriver browser;
         private object driver;
 
@@ -38,7 +38,7 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("percent")).SendKeys("10");
             browser.FindElement(By.Id("term")).SendKeys("365");
             browser.FindElement(By.Id("d365")).Click();
-            string actualIncome = browser.FindElement(By.Id("income")).GetAttribute ("value");
+            string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
             Assert.AreEqual("110.00", actualIncome);
             string actualInterest = browser.FindElement(By.Id("interest")).GetAttribute("value");
             Assert.AreEqual("10.00", actualInterest);
@@ -203,7 +203,26 @@ namespace Calculator.Tests
             Assert.AreEqual("100000.00", actualInterest);
 
         }
+        // [Test]
+        // public void IncomeIsSumOfDepositAmountAndInterestEarned()
+        // {
+        // browser.FindElement(By.Id("amount")).SendKeys("100");
+        // browser.FindElement(By.Id("percent")).SendKeys("10");
+        // browser.FindElement(By.Id("term")).SendKeys("365");
+        // browser.FindElement(By.Id("d365")).Click();
 
+        // NEED HELP what is the function to get sum of two values
 
+        // string actualIncome = browser.FindElement(By.Id("amount")).GetAttribute("value") ;
+        // Assert.AreEqual("110.00", actualIncome);
+
+        // }
+
+        [Test]
+        public void DepositAmountFieldName()
+        {
+            string DepositAmountName = browser.FindElement(By.ClassName("Deposit Ammount *")).GetAttribute("outerText");
+            Assert.AreEqual("Deposit Amount", DepositAmountName);
+        }
     }
 }
