@@ -138,7 +138,7 @@ namespace Calculator.Tests
         }
 
         [Test]
-        // NEED HELP whait is Obsolete, program asks to add it
+        // NEED HELP what is Obsolete, program asks to add it
         [Obsolete]
         public void TestIncomeIsDisplayed()
         {
@@ -177,8 +177,32 @@ namespace Calculator.Tests
             Assert.AreEqual("align", actual);
 
         }
+        [Test]
+        public void PositiveTestMaxDepositAmount100000()
+        {
+            browser.FindElement(By.Id("amount")).SendKeys("100000");
+            browser.FindElement(By.Id("percent")).SendKeys("10");
+            browser.FindElement(By.Id("term")).SendKeys("365");
+            browser.FindElement(By.Id("d365")).Click();
+            string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
+            Assert.AreEqual("110000.00", actualIncome);
+            string actualInterest = browser.FindElement(By.Id("interest")).GetAttribute("value");
+            Assert.AreEqual("10000.00", actualInterest);
 
-        
+        }
+        [Test]
+        public void PositiveTestMaxInterestRate100()
+        {
+            browser.FindElement(By.Id("amount")).SendKeys("100000");
+            browser.FindElement(By.Id("percent")).SendKeys("100");
+            browser.FindElement(By.Id("term")).SendKeys("365");
+            browser.FindElement(By.Id("d365")).Click();
+            string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
+            Assert.AreEqual("200000.00", actualIncome);
+            string actualInterest = browser.FindElement(By.Id("interest")).GetAttribute("value");
+            Assert.AreEqual("100000.00", actualInterest);
+
+        }
 
 
     }

@@ -101,7 +101,6 @@ namespace Calculator.Tests
             Assert.AreEqual("User name and password cannot be empty!", actual);
 
         }
-
         [Test]
         public void UpperCaseLoginTest()
         {
@@ -146,7 +145,6 @@ namespace Calculator.Tests
             Assert.AreEqual("Remind password", actual);
 
         }
-
         [Test]
         public void LoginFieldName()
         {
@@ -154,7 +152,6 @@ namespace Calculator.Tests
             Assert.AreEqual("User", LoginName);
 
         }
-
         [Test]
         public void PasswordFieldName()
         {
