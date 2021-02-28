@@ -30,7 +30,7 @@ namespace Calculator.Tests
         }
 
         [Test]
-        public void PositiveTestCalculator()
+        public void PositiveTestCalculator365days()
         {
             browser.FindElement(By.Id("amount")).SendKeys("100");
             browser.FindElement(By.Id("percent")).SendKeys("10");
@@ -41,6 +41,33 @@ namespace Calculator.Tests
             string actualInterest = browser.FindElement(By.Id("interest")).GetAttribute("value");
             Assert.AreEqual("10.00", actualInterest);
 
+        }
+
+        [Test]
+        public void PositiveTestCalculator360days()
+        {
+            browser.FindElement(By.Id("amount")).SendKeys("100");
+            browser.FindElement(By.Id("percent")).SendKeys("10");
+            browser.FindElement(By.Id("term")).SendKeys("360");
+            browser.FindElement(By.Id("d360")).Click();
+            string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
+            Assert.AreEqual("110.00", actualIncome);
+            string actualInterest = browser.FindElement(By.Id("interest")).GetAttribute("value");
+            Assert.AreEqual("10.00", actualInterest);
+
+        }
+
+        [Test]
+        public void DepositAmountIsMandatoryField()
+        {
+            browser.FindElement(By.Id("amount")).SendKeys(" ");
+            browser.FindElement(By.Id("percent")).SendKeys("10");
+            browser.FindElement(By.Id("term")).SendKeys("365");
+            browser.FindElement(By.Id("d365")).Click();
+            string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
+            Assert.AreEqual("0.00", actualIncome);
+            string actualInterest = browser.FindElement(By.Id("interest")).GetAttribute("value");
+            Assert.AreEqual("0.00", actualInterest);
 
         }
 
