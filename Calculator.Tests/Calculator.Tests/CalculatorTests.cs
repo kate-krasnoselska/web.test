@@ -109,10 +109,10 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("term")).SendKeys("365");
             // NEED HELP couldn't manage this Test, unfortunately
 
-            // using OpenQA.Selenium.Support.UI;
+            /* using OpenQA.Selenium.Support.UI;
             // IWebElement Depart = driver.FindElement(By.Id("day"));
             // SelectElement selectElement = new SelectElement(element: (IWebElement)driver.FindElement(By.Id("day")));
-            // SelectElement select = selectElement;
+             SelectElement select = selectElement; */
 
             browser.FindElement(By.Id("d365")).Click();
             string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
@@ -203,26 +203,29 @@ namespace Calculator.Tests
             Assert.AreEqual("100000.00", actualInterest);
 
         }
-        // [Test]
-        // public void IncomeIsSumOfDepositAmountAndInterestEarned()
-        // {
-        // browser.FindElement(By.Id("amount")).SendKeys("100");
-        // browser.FindElement(By.Id("percent")).SendKeys("10");
-        // browser.FindElement(By.Id("term")).SendKeys("365");
-        // browser.FindElement(By.Id("d365")).Click();
+        /* [Test]
+         public void IncomeIsSumOfDepositAmountAndInterestEarned()
+         {
+            browser.FindElement(By.Id("amount")).SendKeys("100");
+            browser.FindElement(By.Id("percent")).SendKeys("10");
+            browser.FindElement(By.Id("term")).SendKeys("365");
+            browser.FindElement(By.Id("d365")).Click();
 
-        // NEED HELP what is the function to get sum of two values
+            NEED HELP what is the function to get sum of two values
 
-        // string actualIncome = browser.FindElement(By.Id("amount")).GetAttribute("value") ;
-        // Assert.AreEqual("110.00", actualIncome);
+            string actualIncome = browser.FindElement(By.Id("amount")).GetAttribute("value") ;
+            Assert.AreEqual("110.00", actualIncome);
 
-        // }
+         } */
 
-        [Test]
+        /*[Test]
         public void DepositAmountFieldName()
         {
+
+            NEED HELP: how should I find Deposit  Ammount in DOM
+
             string DepositAmountName = browser.FindElement(By.ClassName("Deposit Ammount *")).GetAttribute("outerText");
             Assert.AreEqual("Deposit Amount", DepositAmountName);
-        }
+        } */
     }
 }
