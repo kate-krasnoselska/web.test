@@ -107,12 +107,13 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("amount")).SendKeys("100");
             browser.FindElement(By.Id("percent")).SendKeys("10");
             browser.FindElement(By.Id("term")).SendKeys("365");
-            // NEED HELP
+            // NEED HELP couldn't manage this Test, unfortunately
+
             // using OpenQA.Selenium.Support.UI;
             // IWebElement Depart = driver.FindElement(By.Id("day"));
             // SelectElement selectElement = new SelectElement(element: (IWebElement)driver.FindElement(By.Id("day")));
             // SelectElement select = selectElement;
-         
+
             browser.FindElement(By.Id("d365")).Click();
             string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
             Assert.AreEqual("110.00", actualIncome);
@@ -127,7 +128,7 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("amount")).SendKeys("100");
             browser.FindElement(By.Id("percent")).SendKeys("10");
             browser.FindElement(By.Id("term")).SendKeys("365");
-            // NEED HELP
+            // NEED HELP how to skip required field properly? 
             // browser.FindElement(By.Id("d365")).Click();
             string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
             Assert.AreEqual("100.00", actualIncome);
@@ -137,11 +138,11 @@ namespace Calculator.Tests
         }
 
         [Test]
-        // NEED HELP
+        // NEED HELP whait is Obsolete, program asks to add it
         [Obsolete]
         public void TestIncomeIsDisplayed()
         {
-            // NEED HELP
+            // NEED HELP maybe I don't need to write here next 2 lines? This condition is is Setup, or not?
             new WebDriverWait(browser, TimeSpan.FromSeconds(10))
             .Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("income")));
             string Income = browser.FindElement(By.Id("income")).GetAttribute("value");
@@ -162,7 +163,7 @@ namespace Calculator.Tests
         public void TestEndDateDataIsCorrect()
         {
             string EndDate = browser.FindElement(By.Id("endDate")).GetAttribute("value");
-            // NEED HELP
+            // NEED HELP it works for today only, I guess. How to make it work for any day of any year?
             Assert.AreEqual("28/02/2021", EndDate);
 
         }
@@ -171,12 +172,26 @@ namespace Calculator.Tests
         [Obsolete]
         public void TestInterestEarnedLayout()
         {
+            // NEED HELP how to find aalign typo to make test fail?
             string actual = browser.FindElement(By.TagName("interest earned:")).GetAttribute("aalign");
             Assert.AreEqual("align", actual);
 
         }
 
-      
-       
+        [Test]
+        public void TestDepositAmountLeight()
+        {
+            browser.FindElement(By.Id("amount")).SendKeys("1000000");
+            browser.FindElement(By.Id("percent")).SendKeys("10");
+            browser.FindElement(By.Id("term")).SendKeys("365");
+            browser.FindElement(By.Id("d365")).Click();
+            string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
+            Assert.AreEqual("1100000.00", actualIncome);
+            string actualInterest = browser.FindElement(By.Id("interest")).GetAttribute("value");
+            Assert.AreEqual("100000.00", actualInterest);
+
+        }
+
+
     }
 }
