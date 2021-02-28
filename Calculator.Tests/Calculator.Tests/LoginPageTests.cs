@@ -136,10 +136,11 @@ namespace Calculator.Tests
 
         }
         [Test]
+        [Obsolete]
         public void RemindPassBtnIsDisplayedTest()
         {
-            // new WebDriverWait(browser, TimeSpan.FromSeconds(10))
-           // .Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("remindBtn")));
+            new WebDriverWait(browser, TimeSpan.FromSeconds(10))
+            .Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("remindBtn")));
             IWebElement btn = browser.FindElement(By.Id("remindBtn"));
             string actual = btn.Text;
             Assert.AreEqual("Remind password", actual);

@@ -107,16 +107,33 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("amount")).SendKeys("100");
             browser.FindElement(By.Id("percent")).SendKeys("10");
             browser.FindElement(By.Id("term")).SendKeys("365");
-            SelectElement selectElement = new SelectElement((IWebElement)By.Id("day"));
-            selectElement.SelectByValue("28");
+            // NEED HELP
+            //using OpenQA.Selenium.Support.UI;
+            //IWebElement Depart = driver.FindElement(By.Id("day"));
+            //SelectElement selectElement = new SelectElement(element: (IWebElement)driver.FindElement(By.Id("day")));
+            //SelectElement select = selectElement;
+         
             browser.FindElement(By.Id("d365")).Click();
+            string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
+            Assert.AreEqual("110.00", actualIncome);
+            string actualInterest = browser.FindElement(By.Id("interest")).GetAttribute("value");
+            Assert.AreEqual("10.00", actualInterest);
+
+        }
+
+        [Test]
+        public void TestFinancialYearIsMandatoryField()
+        {
+            browser.FindElement(By.Id("amount")).SendKeys("100");
+            browser.FindElement(By.Id("percent")).SendKeys("10");
+            browser.FindElement(By.Id("term")).SendKeys("365");
+            //browser.FindElement(By.Id("d365")).Click();
             string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
             Assert.AreEqual("100.00", actualIncome);
             string actualInterest = browser.FindElement(By.Id("interest")).GetAttribute("value");
             Assert.AreEqual("0.00", actualInterest);
 
         }
-
 
     }
 }
