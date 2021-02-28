@@ -127,11 +127,23 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("amount")).SendKeys("100");
             browser.FindElement(By.Id("percent")).SendKeys("10");
             browser.FindElement(By.Id("term")).SendKeys("365");
+            //NEED HELP
             //browser.FindElement(By.Id("d365")).Click();
             string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
             Assert.AreEqual("100.00", actualIncome);
             string actualInterest = browser.FindElement(By.Id("interest")).GetAttribute("value");
             Assert.AreEqual("0.00", actualInterest);
+
+        }
+
+        [Test]
+        [Obsolete]
+        public void TestIncomeIsDisplayed()
+        {
+            new WebDriverWait(browser, TimeSpan.FromSeconds(10))
+            .Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("income")));
+            string Income = browser.FindElement(By.Id("income")).GetAttribute("value");
+            Assert.AreEqual("0.00", Income);
 
         }
 
