@@ -9,7 +9,6 @@ namespace Calculator.Tests
     public class CalculatorTests
     {
         IWebDriver browser;
-        private object driver;
 
         [SetUp]
         public void BeforeEachTest()
@@ -109,31 +108,48 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("term")).SendKeys("365");
             // NEED HELP couldn't manage this Test, unfortunately
 
-            /* using OpenQA.Selenium.Support.UI;
-            // IWebElement Depart = driver.FindElement(By.Id("day"));
-            // SelectElement selectElement = new SelectElement(element: (IWebElement)driver.FindElement(By.Id("day")));
-             SelectElement select = selectElement; */
-
-            browser.FindElement(By.Id("d365")).Click();
-            string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
-            Assert.AreEqual("110.00", actualIncome);
-            string actualInterest = browser.FindElement(By.Id("interest")).GetAttribute("value");
-            Assert.AreEqual("10.00", actualInterest);
+            SelectElement daySelect = new SelectElement(element:browser.FindElement(By.Id("day")));
+            string day = daySelect.SelectedOption.Text;
+            SelectElement monthSelect = new SelectElement(element: browser.FindElement(By.Id("month")));
+            string month = monthSelect.SelectedOption.Text;
+            SelectElement yearSelect = new SelectElement(element: browser.FindElement(By.Id("year")));
+            string year = yearSelect.SelectedOption.Text;
+            string actualDate = day + "/" + month + "/" + year;
+            string expectedDate = DateTime.Today.ToString("d/MMMM/yyyy");
+            Assert.AreEqual(expectedDate, actualDate);
 
         }
 
         [Test]
+        public void TestSelectAnyStart()
+        { 
+            SelectElement daySelect = new SelectElement(element: browser.FindElement(By.Id("day")));
+            
+            SelectElement monthSelect = new SelectElement(element: browser.FindElement(By.Id("month")));
+            
+            SelectElement yearSelect = new SelectElement(element: browser.FindElement(By.Id("year")));
+            // 2 April 2022
+
+            daySelect.SelectByText("2");
+            monthSelect.SelectByText("April");
+            yearSelect.SelectByText("2022");
+
+            string actualDate = daySelect.SelectedOption.Text + " " + monthSelect.SelectedOption.Text + " " + yearSelect.SelectedOption.Text;
+            Assert.AreEqual("2 April 2022", actualDate);
+
+        }
+        [Test]
         public void TestFinancialYearIsMandatoryField()
         {
-            browser.FindElement(By.Id("amount")).SendKeys("100");
-            browser.FindElement(By.Id("percent")).SendKeys("10");
-            browser.FindElement(By.Id("term")).SendKeys("365");
+            
             // NEED HELP how to skip required field properly? 
-            // browser.FindElement(By.Id("d365")).Click();
-            string actualIncome = browser.FindElement(By.Id("income")).GetAttribute("value");
-            Assert.AreEqual("100.00", actualIncome);
-            string actualInterest = browser.FindElement(By.Id("interest")).GetAttribute("value");
-            Assert.AreEqual("0.00", actualInterest);
+            bool d365 = browser.FindElement(By.Id("d365")).Selected;
+            bool d360 = browser.FindElement(By.Id("d360")).Selected;
+
+            Assert.IsTrue(d365 || d360);
+            Assert.IsFalse(d365 && d360);
+
+            
 
         }
 
