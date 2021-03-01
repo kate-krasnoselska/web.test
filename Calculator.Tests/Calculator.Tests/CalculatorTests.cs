@@ -155,19 +155,16 @@ namespace Calculator.Tests
 
         [Test]
         // NEED HELP what is Obsolete, program asks to add it
-        [Obsolete]
+        
         public void TestIncomeIsDisplayed()
         {
             // NEED HELP maybe I don't need to write here next 2 lines? This condition is is Setup, or not?
-            new WebDriverWait(browser, TimeSpan.FromSeconds(10))
-            .Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("income")));
             string Income = browser.FindElement(By.Id("income")).GetAttribute("value");
             Assert.AreEqual("0.00", Income);
 
         }
 
         [Test]
-        [Obsolete]
         public void TestInterestEarnedIsDisplayed()
         {
             string InterestEarned = browser.FindElement(By.Id("interest")).GetAttribute("value");
@@ -175,22 +172,26 @@ namespace Calculator.Tests
 
         }
         [Test]
-        [Obsolete]
+        
         public void TestEndDateDataIsCorrect()
+
         {
+            browser.FindElement(By.Id("term")).SendKeys("7");
+            DateTime expected = DateTime.Today.AddDays(+7);
+           
             string EndDate = browser.FindElement(By.Id("endDate")).GetAttribute("value");
             // NEED HELP it works for today only, I guess. How to make it work for any day of any year?
-            Assert.AreEqual("28/02/2021", EndDate);
+            Assert.AreEqual(expected.ToString("dd/MM/yyyy"), EndDate);
 
         }
 
         [Test]
-        [Obsolete]
+        
         public void TestInterestEarnedLayout()
         {
             // NEED HELP how to find aalign typo to make test fail?
-            string actual = browser.FindElement(By.TagName("interest earned:")).GetAttribute("aalign");
-            Assert.AreEqual("align", actual);
+            string actual = browser.FindElement(By.XPath("/html/body/div/div/table/tbody/tr[7]/th[1]")).GetAttribute("aalign");
+            Assert.AreEqual("left", actual);
 
         }
         [Test]
