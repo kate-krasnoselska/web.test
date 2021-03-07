@@ -190,7 +190,7 @@ namespace Calculator.Tests
         public void TestInterestEarnedLayout()
         {
             // NEED HELP how to find aalign typo to make test fail?
-            string actual = browser.FindElement(By.XPath("/html/body/div/div/table/tbody/tr[7]/th[1]")).GetAttribute("aalign");
+            string actual = browser.FindElement(By.XPath("/html/body/div/div/table/tbody/tr[7]/th[1]")).GetAttribute("align");
             Assert.AreEqual("left", actual);
 
         }
