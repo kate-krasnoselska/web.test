@@ -33,6 +33,7 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("password")).SendKeys("newyork1");
             browser.FindElement(By.Id("loginBtn")).Click();
             string actual = browser.Url;
+
             Assert.AreEqual("http://127.0.0.1:8080/Deposit", actual);
         }
 
@@ -43,6 +44,7 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("password")).SendKeys("newyork1");
             browser.FindElement(By.Id("loginBtn")).Click();
             string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
             Assert.AreEqual("Incorrect user name!", actual);
         }
 
@@ -53,6 +55,7 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("password")).SendKeys("newyork11");
             browser.FindElement(By.Id("loginBtn")).Click();
             string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
             Assert.AreEqual("Incorrect password!", actual);
         }
 
@@ -63,6 +66,7 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("password")).SendKeys("newyork11");
             browser.FindElement(By.Id("loginBtn")).Click();
             string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
             Assert.AreEqual("'test1' user doesn't exist!", actual);
         }
 
@@ -73,6 +77,7 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("password")).SendKeys(" ");
             browser.FindElement(By.Id("loginBtn")).Click();
             string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
             Assert.AreEqual("User name and password cannot be empty!", actual);
         }
 
@@ -83,6 +88,7 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("password")).SendKeys("newyork1");
             browser.FindElement(By.Id("loginBtn")).Click();
             string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
             Assert.AreEqual("User name and password cannot be empty!", actual);
         }
 
@@ -93,6 +99,7 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("password")).SendKeys(" ");
             browser.FindElement(By.Id("loginBtn")).Click();
             string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
             Assert.AreEqual("User name and password cannot be empty!", actual);
         }
 
@@ -103,6 +110,7 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("password")).SendKeys("newyork1");
             browser.FindElement(By.Id("loginBtn")).Click();
             string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
             Assert.AreEqual("Incorrect user name!", actual);
         }
 
@@ -113,6 +121,7 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("password")).SendKeys("NEWYORK1");
             browser.FindElement(By.Id("loginBtn")).Click();
             string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
             Assert.AreEqual("Incorrect password!", actual);
         }
 
@@ -123,6 +132,7 @@ namespace Calculator.Tests
             browser.FindElement(By.Id("password")).SendKeys("newyork1");
             browser.FindElement(By.Id("loginBtn")).Click();
             string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
             Assert.AreEqual("Incorrect user name!", actual);
         }
 
@@ -133,6 +143,7 @@ namespace Calculator.Tests
             .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("remindBtn")));
             IWebElement btn = browser.FindElement(By.Id("remindBtn"));
             string actual = btn.Text;
+
             Assert.AreEqual("Remind password", actual);
         }
 
@@ -140,6 +151,7 @@ namespace Calculator.Tests
         public void LoginFieldName()
         {
             string LoginName = browser.FindElement(By.ClassName("user")).GetAttribute("innerText");
+
             Assert.AreEqual("User", LoginName);
         }
 
@@ -147,6 +159,7 @@ namespace Calculator.Tests
         public void PasswordFieldName()
         {
             string PasswordName = browser.FindElement(By.ClassName("pass")).GetAttribute("innerText");
+
             Assert.AreEqual("Password", PasswordName);
         }
 
