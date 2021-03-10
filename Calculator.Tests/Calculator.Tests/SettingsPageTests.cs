@@ -46,8 +46,9 @@ namespace Calculator.Tests
         {
             browser.FindElement(By.XPath("/html/body/div/div/div")).Click();
             string actual = browser.Url;
-            // NEED HELP: actual result consists / is it ok? or a bug
-            Assert.AreEqual("http://127.0.0.1:8080", actual);
+            // NEED HELP: actual result consists '/' is it ok? or a bug
+            Assert.AreEqual("http://127.0.0.1:8080/", actual);
         }
+
     }
 }
