@@ -39,6 +39,15 @@ namespace Calculator.Tests
             string actual = browser.Url;
 
             Assert.AreEqual("http://127.0.0.1:8080/Deposit", actual);
-        } 
+        }
+
+        [Test]
+        public void PositiveTestLogoutBtnWork()
+        {
+            browser.FindElement(By.XPath("/html/body/div/div/div")).Click();
+            string actual = browser.Url;
+            // NEED HELP: actual result consists / is it ok? or a bug
+            Assert.AreEqual("http://127.0.0.1:8080", actual);
+        }
     }
 }
