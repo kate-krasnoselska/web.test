@@ -1,4 +1,5 @@
 using System;
+using Calculator.Tests.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -29,9 +30,13 @@ namespace Calculator.Tests
         [Test]
         public void PositiveTest()
         {
-            browser.FindElement(By.Id("login")).SendKeys("test");
-            browser.FindElement(By.Id("password")).SendKeys("newyork1");
-            browser.FindElement(By.Id("loginBtn")).Click();
+            LoginPage loginPage = new LoginPage(browser);
+            loginPage.LoginFld.SendKeys("test");
+            loginPage.PasswordFld.SendKeys("newyork1");
+            loginPage.LoginBtn.Click();
+            //browser.FindElement(By.Id("login")).SendKeys("test");
+            //browser.FindElement(By.Id("password")).SendKeys("newyork1");
+            //browser.FindElement(By.Id("loginBtn")).Click();
             string actual = browser.Url;
 
             Assert.AreEqual("http://127.0.0.1:8080/Deposit", actual);
@@ -40,12 +45,15 @@ namespace Calculator.Tests
         [Test]
         public void IncorrectLoginTest()
         {
-            browser.FindElement(By.Id("login")).SendKeys("test1");
-            browser.FindElement(By.Id("password")).SendKeys("newyork1");
-            browser.FindElement(By.Id("loginBtn")).Click();
-            string actual = browser.FindElement(By.Id("errorMessage")).Text;
+            LoginPage loginPage = new LoginPage(browser);
+            loginPage.Login("test1", "newy ork1");
 
-            Assert.AreEqual("Incorrect user name!", actual);
+            // browser.FindElement(By.Id("login")).SendKeys("test1");
+            // browser.FindElement(By.Id("password")).SendKeys("newy ork1");
+            // browser.FindElement(By.Id("loginBtn")).Click();
+            //string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
+            Assert.AreEqual("Incorrect user name!", loginPage.ErrorMessage);
         }
 
         [Test]
