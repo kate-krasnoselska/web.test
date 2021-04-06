@@ -47,7 +47,7 @@ namespace Calculator.Tests
         [Test]
         public void PositiveTestCalculator360days()
         {
-            browser.FindElement(By.XPath("//td[2]//input[@id = 'amount']")).SendKeys("100");
+            browser.FindElement(By.XPath("//input[@id = 'amount']")).SendKeys("100");
             browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
             browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("360");
             browser.FindElement(By.XPath("//input[@type][1]")).Click();
