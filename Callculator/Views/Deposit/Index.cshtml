@@ -49,8 +49,10 @@
 				<tr id="finYear">
 					<td>Financial year: *</td>
 					<td>
-						<input type="radio" onchange="SetYear(360); Calculate();">360 days</input><br>
-						<input type="radio" onchange="SetYear(365); Calculate();" checked="checked">365 days</input>
+                        <input type="radio" onchange="SetYear(360); Calculate();"/>
+                            <span>360 days</span><br>
+                        <input type="radio" onchange="SetYear(365); Calculate();" checked="checked"/>
+                            <span>365 days</span>
 					</td>
 				</tr>
 				<tr>
