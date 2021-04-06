@@ -55,9 +55,10 @@ namespace Calculator.Tests
             SelectElement dateFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'dateFormat']")));
             dateFormatSelect.SelectByText("dd-MM-yyyy");
             browser.FindElement(By.XPath("//button[text()='Save']")).Click();
-            //NEED HELP IDK how to find OK button on alert "Changes are saved!"
+            browser.SwitchTo().Alert().Accept();
+            
             //Assert.IsTrue("");
-           
+
         }
 
     }
