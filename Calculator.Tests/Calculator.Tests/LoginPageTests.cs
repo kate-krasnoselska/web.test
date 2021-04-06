@@ -65,11 +65,9 @@ namespace Calculator.Tests
             browser.FindElement(By.XPath("//input[@id = 'login']")).SendKeys("test1");
             browser.FindElement(By.XPath("//input[@id = 'password']")).SendKeys("newyork11");
             browser.FindElement(By.XPath("//button [@id = 'loginBtn']")).Click();
-            string actual = browser.FindElement(By.Id("errorMessage")).Text;
 
+            string actual = browser.FindElement(By.Id("errorMessage")).Text;
             Assert.AreEqual("'test1' user doesn't exist!", actual);
-            //NEED HELP in line 68: I could not find it by //tr[4]//th[contains (text(), ''test1' user doesn't exist!')]
-            //is it because of 'test1' signs or what do you think?
         }
 
         [Test]

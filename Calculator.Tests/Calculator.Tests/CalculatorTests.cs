@@ -36,7 +36,7 @@ namespace Calculator.Tests
             browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
             browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("365");
             browser.FindElement(By.XPath("//input[@type][2]")).Click();
-            // NEED HELP could not find radiobutton using //input [(text(), '365 days')]. is there a mistake? line 38
+            
             string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
 
             Assert.AreEqual("110.00", actualIncome);
@@ -49,7 +49,7 @@ namespace Calculator.Tests
         {
             browser.FindElement(By.XPath("//input[@id = 'amount']")).SendKeys("100");
             browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
-            browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("360");
+            browser.FindElement(By.XPath("//tr [@id]/td[2]/child::input")).SendKeys("360");
             browser.FindElement(By.XPath("//input[@type][1]")).Click();
             string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
 
@@ -177,7 +177,7 @@ namespace Calculator.Tests
         [Test]
         public void TestInterestEarnedLayout()
         {          
-            string actual = browser.FindElement(By.XPath("//tr[7]//th [contains(text ), 'Interest earned')]")).GetAttribute("align");
+            string actual = browser.FindElement(By.XPath("//th [contains(text(), 'Interest earned')]")).GetAttribute("align");
 
             Assert.AreEqual("left", actual);
         }

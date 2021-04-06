@@ -63,7 +63,7 @@ namespace Calculator.Tests
             // Assert.AreEqual ()here I want to compare dateFormatSelect and Data in End Date field on Calc Page
 
             // NEED HELP at line 62. as well as I see, the app should return us to Deposit page. But assert falls. 
-            // It says that string was 0.0d\n
+            // It says that actual string was 0.0d\n
         }
 
     }
