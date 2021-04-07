@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -114,7 +115,7 @@ namespace Calculator.Tests
             SelectElement yearSelect = new SelectElement(element: browser.FindElement(By.XPath("//select [@id = 'year']")));
             string year = yearSelect.SelectedOption.Text;
             string actualDate = day + "/" + month + "/" + year;
-            string expectedDate = DateTime.Today.ToString("d/MMMM/yyyy");
+            string expectedDate = DateTime.Today.ToString("d/MMMM/yyyy", CultureInfo.InvariantCulture);
 
             Assert.AreEqual(expectedDate, actualDate);
 
@@ -171,7 +172,7 @@ namespace Calculator.Tests
            
             string EndDate = browser.FindElement(By.XPath("//input [@id = 'endDate']")).GetAttribute("value");
 
-            Assert.AreEqual(expected.ToString("dd/MM/yyyy"), EndDate);
+            Assert.AreEqual(expected.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture), EndDate);
         }
 
         [Test]

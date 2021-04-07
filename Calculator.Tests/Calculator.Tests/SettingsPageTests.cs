@@ -47,7 +47,7 @@ namespace Calculator.Tests
             browser.FindElement(By.XPath("//button[text()='Logout']")).Click();
             browser.SwitchTo().Alert().Accept();
             string actual = browser.Url;
-            
+
             Assert.AreEqual("http://127.0.0.1:8080/", actual);
         }
 
@@ -58,13 +58,12 @@ namespace Calculator.Tests
             dateFormatSelect.SelectByText("dd-MM-yyyy");
             browser.FindElement(By.XPath("//button[text()='Save']")).Click();
             browser.SwitchTo().Alert().Accept();
-            
+
             Assert.AreEqual("http://127.0.0.1:8080/Deposit", actual);
             // Assert.AreEqual ()here I want to compare dateFormatSelect and Data in End Date field on Calc Page
 
             // NEED HELP at line 62. as well as I see, the app should return us to Deposit page. But assert falls. 
             // It says that actual string was 0.0d\n
         }
-
     }
 }
