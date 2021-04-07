@@ -31,6 +31,11 @@ namespace Calculator.Tests.Pages
         }
 
         public string ErrorMessage => driver.FindElement(By.Id("errorMessage")).Text;
+
+        public string PasswordName => driver.FindElement(By.ClassName("pass")).GetAttribute("innerText");
+
+        public string LoginName => driver.FindElement(By.ClassName("user")).GetAttribute("innerText");
+
     }
 }
         
