@@ -109,7 +109,6 @@ namespace Calculator.Tests
             browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
             browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys(" ");
             browser.FindElement(By.XPath("//input[@type][2]")).Click();
-            Thread.Sleep(1000);
             string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
 
             Assert.AreEqual("100.00", actualIncome);

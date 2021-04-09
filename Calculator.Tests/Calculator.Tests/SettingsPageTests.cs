@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -9,7 +10,6 @@ namespace Calculator.Tests
     public class SettingsPageTests
     {
         IWebDriver browser;
-        private double actual;
 
         [SetUp]
         public void BeforeEachTest()
@@ -59,11 +59,33 @@ namespace Calculator.Tests
             browser.FindElement(By.XPath("//button[text()='Save']")).Click();
             browser.SwitchTo().Alert().Accept();
 
-            Assert.AreEqual("http://127.0.0.1:8080/Deposit", actual);
+            // Assert.AreEqual("http://127.0.0.1:8080/Deposit", actual);
             // Assert.AreEqual ()here I want to compare dateFormatSelect and Data in End Date field on Calc Page
 
             // NEED HELP at line 62. as well as I see, the app should return us to Deposit page. But assert falls. 
             // It says that actual string was 0.0d\n
+        }
+
+        [TestCase("MM dd yyyy")]
+        [TestCase("dd/MM/yyyy")]
+        [TestCase("dd-MM-yyyy")]
+        [TestCase("MM/dd/yyyy")]
+        public void SelectDateFormatIsApplied(string format)
+        {
+            // 1. Select the Date format "MM dd yyyy" from dropdown
+            // 2. Click Save
+            // 3. Click OK alert
+            // 4. See End date is aaplied correctly
+
+            SelectElement dateFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'dateFormat']")));
+            dateFormatSelect.SelectByText(format);
+            browser.FindElement(By.XPath("//button[text()='Save']")).Click();
+            browser.SwitchTo().Alert().Accept();
+            browser.FindElement(By.XPath("//input [@id = 'term']")).GetAttribute("value");
+            DateTime expected = DateTime.Today;
+            string actual = browser.FindElement(By.XPath("//input [@id = 'endDate']")).GetAttribute("value");
+
+            Assert.AreEqual(expected.ToString (format, CultureInfo.InvariantCulture), actual);
         }
     }
 }
