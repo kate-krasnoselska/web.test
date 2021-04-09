@@ -186,9 +186,8 @@ namespace Calculator.Tests
         {
             LoginPage loginPage = new LoginPage(browser);
             loginPage.LoginFld.GetAttribute("innerText");
-            //string LoginName = browser.FindElement(By.ClassName("user")).GetAttribute("innerText");
 
-            Assert.AreEqual("Login:", loginPage.LoginName);
+            Assert.AreEqual("User", loginPage.LoginName);
         }
 
         [Test]
