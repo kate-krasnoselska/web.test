@@ -1,4 +1,5 @@
 using System;
+using Calculator.Tests.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -29,111 +30,142 @@ namespace Calculator.Tests
         [Test]
         public void PositiveTest()
         {
-            browser.FindElement(By.XPath("//input[@id = 'login']")).SendKeys("test");
-            browser.FindElement(By.XPath("//input[@id = 'password']")).SendKeys("newyork1");
-            browser.FindElement(By.XPath("//button [@id = 'loginBtn']")).Click();
-            string actual = browser.Url;
+            new LoginPage(browser).Login();
+            
+            //browser.FindElement(By.Id("login")).SendKeys("test");
+            //browser.FindElement(By.Id("password")).SendKeys("newyork1");
+            //browser.FindElement(By.Id("loginBtn")).Click();
 
-            Assert.AreEqual("http://127.0.0.1:8080/Deposit", actual);
+            Assert.AreEqual("http://127.0.0.1:8080/Deposit", browser.Url);
         }
 
         [Test]
         public void IncorrectLoginTest()
         {
-            browser.FindElement(By.XPath("//input[@id = 'login']")).SendKeys("test1");
-            browser.FindElement(By.XPath("//input[@id = 'password']")).SendKeys("newyork1");
-            browser.FindElement(By.XPath("//button [@id = 'loginBtn']")).Click();
-            string actual = browser.FindElement(By.Id("errorMessage")).Text;
+            LoginPage loginPage = new LoginPage(browser);
+            loginPage.Login("test1", "newy ork1");
 
-            Assert.AreEqual("Incorrect user name!", actual);
+            Assert.AreEqual("'test1' user doesn't exist!", loginPage.ErrorMessage);
         }
 
         [Test]
         public void IncorrectPasswordTest()
         {
-            browser.FindElement(By.XPath("//input[@id = 'login']")).SendKeys("test");
-            browser.FindElement(By.XPath("//input[@id = 'password']")).SendKeys("newyork11");
-            browser.FindElement(By.XPath("//button [@id = 'loginBtn']")).Click();
-            string actual = browser.FindElement(By.Id("errorMessage")).Text;
+            LoginPage loginPage = new LoginPage(browser);
+            loginPage.Login("test", "newyork11");
 
-            Assert.AreEqual("Incorrect password!", actual);
+            // browser.FindElement(By.Id("login")).SendKeys("test");
+            // browser.FindElement(By.Id("password")).SendKeys("newyork11");
+            // browser.FindElement(By.Id("loginBtn")).Click();
+            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
+            Assert.AreEqual("Incorrect password!", loginPage.ErrorMessage);
         }
 
         [Test]
         public void IncorrectLoginPasswordTest()
         {
-            browser.FindElement(By.XPath("//input[@id = 'login']")).SendKeys("test1");
-            browser.FindElement(By.XPath("//input[@id = 'password']")).SendKeys("newyork11");
-            browser.FindElement(By.XPath("//button [@id = 'loginBtn']")).Click();
 
-            string actual = browser.FindElement(By.Id("errorMessage")).Text;
-            Assert.AreEqual("'test1' user doesn't exist!", actual);
+            LoginPage loginPage = new LoginPage(browser);
+            loginPage.Login("test1", "newyork11");
+
+            // browser.FindElement(By.Id("login")).SendKeys("test1");
+            // browser.FindElement(By.Id("password")).SendKeys("newyork11");
+            // browser.FindElement(By.Id("loginBtn")).Click();
+            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
+            Assert.AreEqual("'test1' user doesn't exist!", loginPage.ErrorMessage);
         }
 
         [Test]
         public void EmptyLoginPasswordTest()
         {
-            browser.FindElement(By.XPath("//input[@id = 'login']")).SendKeys(" ");
-            browser.FindElement(By.XPath("//input[@id = 'password']")).SendKeys(" ");
-            browser.FindElement(By.XPath("//button [@id = 'loginBtn']")).Click();
-            string actual = browser.FindElement(By.Id("errorMessage")).Text;
 
-            Assert.AreEqual("User name and password cannot be empty!", actual);
+            LoginPage loginPage = new LoginPage(browser);
+            loginPage.Login(" ", " ");
+
+            // browser.FindElement(By.Id("login")).SendKeys(" ");
+            // browser.FindElement(By.Id("password")).SendKeys(" ");
+            // browser.FindElement(By.Id("loginBtn")).Click();
+            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
+            Assert.AreEqual("User name and password cannot be empty!", loginPage.ErrorMessage);
         }
 
         [Test]
         public void EmptyLoginTest()
         {
-            browser.FindElement(By.XPath("//input[@id = 'login']")).SendKeys(" ");
-            browser.FindElement(By.XPath("//input[@id = 'password']")).SendKeys("newyork1");
-            browser.FindElement(By.XPath("//button [@id = 'loginBtn']")).Click();
-            string actual = browser.FindElement(By.Id("errorMessage")).Text;
 
-            Assert.AreEqual("User name and password cannot be empty!", actual);
+            LoginPage loginPage = new LoginPage(browser);
+            loginPage.Login(" ", "newyork1");
+
+            // browser.FindElement(By.Id("login")).SendKeys(" ");
+            // browser.FindElement(By.Id("password")).SendKeys("newyork1");
+            // browser.FindElement(By.Id("loginBtn")).Click();
+            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
+            Assert.AreEqual("User name and password cannot be empty!", loginPage.ErrorMessage);
         }
 
         [Test]
         public void EmptyPasswordTest()
         {
-            browser.FindElement(By.XPath("//input[@id = 'login']")).SendKeys("test");
-            browser.FindElement(By.XPath("//input[@id = 'password']")).SendKeys(" ");
-            browser.FindElement(By.XPath("//button [@id = 'loginBtn']")).Click();
-            string actual = browser.FindElement(By.Id("errorMessage")).Text;
 
-            Assert.AreEqual("User name and password cannot be empty!", actual);
+            LoginPage loginPage = new LoginPage(browser);
+            loginPage.Login(" ", "newyork1");
+
+            // browser.FindElement(By.Id("login")).SendKeys("test");
+            // browser.FindElement(By.Id("password")).SendKeys(" ");
+            // browser.FindElement(By.Id("loginBtn")).Click();
+            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
+            Assert.AreEqual("User name and password cannot be empty!", loginPage.ErrorMessage);
         }
 
         [Test]
         public void UpperCaseLoginTest()
         {
-            browser.FindElement(By.XPath("//input[@id = 'login']")).SendKeys("TEST");
-            browser.FindElement(By.XPath("//input[@id = 'password']")).SendKeys("newyork1");
-            browser.FindElement(By.XPath("//button [@id = 'loginBtn']")).Click();
-            string actual = browser.FindElement(By.Id("errorMessage")).Text;
 
-            Assert.AreEqual("Incorrect user name!", actual);
+            LoginPage loginPage = new LoginPage(browser);
+            loginPage.Login("TEST", "newyork1");
+
+            // browser.FindElement(By.Id("login")).SendKeys("TEST");
+            // browser.FindElement(By.Id("password")).SendKeys("newyork1");
+            // browser.FindElement(By.Id("loginBtn")).Click();
+            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
+            Assert.AreEqual("Incorrect user name!", loginPage.ErrorMessage);
         }
 
         [Test]
         public void UpperCasePasswordTest()
         {
-            browser.FindElement(By.XPath("//input[@id = 'login']")).SendKeys("test");
-            browser.FindElement(By.XPath("//input[@id = 'password']")).SendKeys("NEWYORK1");
-            browser.FindElement(By.XPath("//button [@id = 'loginBtn']")).Click();
-            string actual = browser.FindElement(By.Id("errorMessage")).Text;
 
-            Assert.AreEqual("Incorrect password!", actual);
+            LoginPage loginPage = new LoginPage(browser);
+            loginPage.Login("test", "NEWYORK1");
+
+            // browser.FindElement(By.Id("login")).SendKeys("test");
+            //
+            // browser.FindElement(By.Id("password")).SendKeys("NEWYORK1");
+            // browser.FindElement(By.Id("loginBtn")).Click();
+            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
+            Assert.AreEqual("Incorrect password!", loginPage.ErrorMessage);
         }
 
         [Test]
         public void SpaceInLoginTest()
         {
-            browser.FindElement(By.XPath("//input[@id = 'login']")).SendKeys(" test");
-            browser.FindElement(By.XPath("//input[@id = 'password']")).SendKeys("newyork1");
-            browser.FindElement(By.XPath("//button [@id = 'loginBtn']")).Click();
-            string actual = browser.FindElement(By.Id("errorMessage")).Text;
 
-            Assert.AreEqual("Incorrect user name!", actual);
+            LoginPage loginPage = new LoginPage(browser);
+            loginPage.Login(" test", "newyork1");
+
+            // browser.FindElement(By.Id("login")).SendKeys(" test");
+            // browser.FindElement(By.Id("password")).SendKeys("newyork1");
+            // browser.FindElement(By.Id("loginBtn")).Click();
+            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
+
+            Assert.AreEqual("Incorrect user name!", loginPage.ErrorMessage);
         }
 
         [Test]
@@ -150,24 +182,22 @@ namespace Calculator.Tests
         [Test]
         public void LoginFieldName()
         {
-            string LoginName = browser.FindElement(By.XPath("//*[@class='user']")).GetAttribute("innerText");
 
-            Assert.AreEqual("User", LoginName);
+            LoginPage loginPage = new LoginPage(browser);
+            loginPage.LoginFld.GetAttribute("innerText");
+
+            Assert.AreEqual("User", loginPage.LoginName);
         }
 
         [Test]
         public void PasswordFieldName()
         {
-            string PasswordName = browser.FindElement(By.XPath("//*[@class='pass']")).GetAttribute("innerText");
 
-            Assert.AreEqual("Password", PasswordName);
+            LoginPage loginPage = new LoginPage(browser);
+            loginPage.PasswordFld.GetAttribute("innerText");
+
+            Assert.AreEqual("Password", loginPage.PasswordName);
         }
-
-        
-
-
-
-
 
 
     }

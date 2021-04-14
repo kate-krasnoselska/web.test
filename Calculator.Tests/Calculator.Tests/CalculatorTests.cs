@@ -1,4 +1,5 @@
 ﻿using System;
+using Calculator.Tests.Pages;
 using System.Globalization;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -19,9 +20,15 @@ namespace Calculator.Tests
             browser.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
             browser.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
-            browser.FindElement(By.XPath("//input[@id = 'login']")).SendKeys("test");
-            browser.FindElement(By.XPath("//input[@id = 'password']")).SendKeys("newyork1");
-            browser.FindElement(By.XPath("//button [@id = 'loginBtn']")).Click();
+
+            //LoginPage loginPage = new LoginPage(browser);
+            //loginPage.Login();
+            new LoginPage(browser).Login();
+            
+            //browser.FindElement(By.Id("login")).SendKeys("test");
+            //browser.FindElement(By.Id("password")).SendKeys("newyork1");
+            //browser.FindElement(By.Id("loginBtn")).Click();
+
 
             browser.FindElement(By.XPath("//button[text()='Settings']")).Click();
 
@@ -36,6 +43,7 @@ namespace Calculator.Tests
 
             browser.FindElement(By.XPath("//button[text()='Save']")).Click();
             browser.SwitchTo().Alert().Accept();
+
         }
 
         [TearDown]
