@@ -30,17 +30,13 @@ namespace Calculator.Tests
         [Test]
         public void PositiveTest()
         {
-            LoginPage loginPage = new LoginPage(browser);
-            loginPage.LoginFld.SendKeys("test");
-            loginPage.PasswordFld.SendKeys("newyork1");
-            loginPage.LoginBtn.Click();
-
+            new LoginPage(browser).Login();
+            
             //browser.FindElement(By.Id("login")).SendKeys("test");
             //browser.FindElement(By.Id("password")).SendKeys("newyork1");
             //browser.FindElement(By.Id("loginBtn")).Click();
-            string actual = browser.Url;
 
-            Assert.AreEqual("http://127.0.0.1:8080/Deposit", actual);
+            Assert.AreEqual("http://127.0.0.1:8080/Deposit", browser.Url);
         }
 
         [Test]
@@ -48,11 +44,6 @@ namespace Calculator.Tests
         {
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login("test1", "newy ork1");
-
-            // browser.FindElement(By.Id("login")).SendKeys("test1");
-            // browser.FindElement(By.Id("password")).SendKeys("newy ork1");
-            // browser.FindElement(By.Id("loginBtn")).Click();
-            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
 
             Assert.AreEqual("'test1' user doesn't exist!", loginPage.ErrorMessage);
         }
@@ -74,6 +65,7 @@ namespace Calculator.Tests
         [Test]
         public void IncorrectLoginPasswordTest()
         {
+
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login("test1", "newyork11");
 
@@ -88,6 +80,7 @@ namespace Calculator.Tests
         [Test]
         public void EmptyLoginPasswordTest()
         {
+
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login(" ", " ");
 
@@ -102,6 +95,7 @@ namespace Calculator.Tests
         [Test]
         public void EmptyLoginTest()
         {
+
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login(" ", "newyork1");
 
@@ -116,6 +110,7 @@ namespace Calculator.Tests
         [Test]
         public void EmptyPasswordTest()
         {
+
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login(" ", "newyork1");
 
@@ -130,6 +125,7 @@ namespace Calculator.Tests
         [Test]
         public void UpperCaseLoginTest()
         {
+
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login("TEST", "newyork1");
 
@@ -144,6 +140,7 @@ namespace Calculator.Tests
         [Test]
         public void UpperCasePasswordTest()
         {
+
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login("test", "NEWYORK1");
 
@@ -159,6 +156,7 @@ namespace Calculator.Tests
         [Test]
         public void SpaceInLoginTest()
         {
+
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login(" test", "newyork1");
 
@@ -174,8 +172,8 @@ namespace Calculator.Tests
         public void RemindPassBtnIsDisplayedTest()
         {
             new WebDriverWait(browser, TimeSpan.FromSeconds(10))
-            .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("remindBtn")));
-            IWebElement btn = browser.FindElement(By.Id("remindBtn"));
+            .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath("//button[text() = 'Remind password']")));
+            IWebElement btn = browser.FindElement(By.XPath("//button[text() = 'Remind password']"));
             string actual = btn.Text;
 
             Assert.AreEqual("Remind password", actual);
@@ -184,6 +182,7 @@ namespace Calculator.Tests
         [Test]
         public void LoginFieldName()
         {
+
             LoginPage loginPage = new LoginPage(browser);
             loginPage.LoginFld.GetAttribute("innerText");
 
@@ -193,6 +192,7 @@ namespace Calculator.Tests
         [Test]
         public void PasswordFieldName()
         {
+
             LoginPage loginPage = new LoginPage(browser);
             loginPage.PasswordFld.GetAttribute("innerText");
 
