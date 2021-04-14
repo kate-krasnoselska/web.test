@@ -69,6 +69,9 @@ namespace Calculator.Tests
         }
 
         [TestCase("123,456,789.00", "11,000.00", "1,000.00")]
+        [TestCase("123.456.789,00", "11.000,00", "1.000,00")]
+        [TestCase("123 456 789.00", "11 000.00", "1 000.00")]
+        [TestCase("123 456 789,00", "11 000,00", "1 000,00")]
         public void SelectNumberFormat (string format, string expectedIncome, string expectedInterest)
         {
             SelectElement numberFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'numberFormat']")));
@@ -89,6 +92,8 @@ namespace Calculator.Tests
         }
 
         [TestCase("$ - US dollar", "$")]
+        [TestCase("€ - euro", "€")]
+        [TestCase("£ - Great Britain Pound", "£")]
         public void SelectCurrencyFormat(string currencyName, string currencyCode)
         {
             SelectElement currencyFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'currency']")));
