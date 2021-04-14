@@ -1,4 +1,5 @@
 ﻿using System;
+using Calculator.Tests.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -18,9 +19,7 @@ namespace Calculator.Tests
             browser.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
             browser.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
-            browser.FindElement(By.Id("login")).SendKeys("test");
-            browser.FindElement(By.Id("password")).SendKeys("newyork1");
-            browser.FindElement(By.Id("loginBtn")).Click();
+            new LoginPage(browser).Login();
 
             // NEED HELP: is it ok to find Settings btn like this?
             browser.FindElement(By.XPath("/html/body/div/div/div")).Click();

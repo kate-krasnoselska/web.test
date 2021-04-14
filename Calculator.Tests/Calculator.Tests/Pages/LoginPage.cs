@@ -23,6 +23,8 @@ namespace Calculator.Tests.Pages
 
         public IWebElement LoginBtn => driver.FindElement(By.Id("loginBtn"));
 
+        public void Login() => Login("test", "newyork1");
+
         public void Login(string login, string password)
         {
             LoginFld.SendKeys(login);

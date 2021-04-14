@@ -18,9 +18,13 @@ namespace Calculator.Tests
             browser.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
             browser.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
-            browser.FindElement(By.Id("login")).SendKeys("test");
-            browser.FindElement(By.Id("password")).SendKeys("newyork1");
-            browser.FindElement(By.Id("loginBtn")).Click();
+            //LoginPage loginPage = new LoginPage(browser);
+            //loginPage.Login();
+            new LoginPage(browser).Login();
+            
+            //browser.FindElement(By.Id("login")).SendKeys("test");
+            //browser.FindElement(By.Id("password")).SendKeys("newyork1");
+            //browser.FindElement(By.Id("loginBtn")).Click();
         }
 
         [TearDown]
