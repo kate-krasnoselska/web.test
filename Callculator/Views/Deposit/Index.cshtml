@@ -188,6 +188,8 @@
     }
 
     async function Calculate() {
+        document.getElementById('calculateBtn').disabled = true;
+
         var year = document.querySelector('#finYear input').checked ? 360 : 365;
         var amount = Number(document.getElementById('amount').value);
 		var days = Number(document.getElementById('term').value);
