@@ -58,11 +58,9 @@ namespace Calculator.Tests
         [TestCase("MM/dd/yyyy")]
         public void SelectDateFormatIsApplied(string format)
         {
-
-            SelectElement dateFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'dateFormat']")));
-            dateFormatSelect.SelectByText(format);
-
-            new SettingsPage(browser).Save();
+            SettingsPage settingsPage = new SettingsPage(browser);
+            settingsPage.SelectDateFormat(format);
+            settingsPage.Save();
 
             browser.FindElement(By.XPath("//input [@id = 'term']")).GetAttribute("value");
             DateTime expected = DateTime.Today;

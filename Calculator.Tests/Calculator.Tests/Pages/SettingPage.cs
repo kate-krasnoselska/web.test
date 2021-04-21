@@ -31,10 +31,13 @@ namespace Calculator.Tests.Pages
         {
             SelectElement numberFormatSelect = new SelectElement(element: driver.FindElement(By.XPath("//select[@id = 'numberFormat']")));
             numberFormatSelect.SelectByText(format);
-
         }
 
-        public void SelectDateFormat (string format) => driver.FindElement(By.XPath("//select[@id = 'dateFormat']"));
+        public void SelectDateFormat(string format)
+        {
+            SelectElement dateFormatSelect = new SelectElement(element: driver.FindElement(By.XPath("//select[@id = 'dateFormat']")));
+            dateFormatSelect.SelectByText(format);
+        }
 
         public void Logout()
         {
