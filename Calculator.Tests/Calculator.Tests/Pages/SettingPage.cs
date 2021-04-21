@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace Calculator.Tests.Pages
 {
@@ -18,7 +19,13 @@ namespace Calculator.Tests.Pages
 
         public IWebElement CancelBtn => driver.FindElement(By.XPath("//button[@id = 'cancel']"));
 
-        public void SelectCurrency(string currencyName, string currencyCode) => driver.FindElement(By.XPath("//select[@id = 'currency']"));
+        public IWebElement DepositPageCurrencyFld => driver.FindElement(By.XPath("//td[@id = 'currency']"));
+
+        public void SelectCurrency(string currencyName)
+        {
+            SelectElement currencyFormatSelect = new SelectElement(element: driver.FindElement(By.XPath("//select[@id = 'currency']")));
+            currencyFormatSelect.SelectByText(currencyName);
+        }
 
         public void SelectNumberFormat(string format, string expectedIncome, string expectedInterest) => driver.FindElement(By.XPath("//select[@id = 'numberFormat']"));
 

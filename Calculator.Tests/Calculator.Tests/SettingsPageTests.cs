@@ -57,6 +57,7 @@ namespace Calculator.Tests
         [TestCase("MM/dd/yyyy")]
         public void SelectDateFormatIsApplied(string format)
         {
+
             SelectElement dateFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'dateFormat']")));
             dateFormatSelect.SelectByText(format);
 
@@ -99,16 +100,16 @@ namespace Calculator.Tests
         [TestCase("£ - Great Britain Pound", "£")]
         public void SelectCurrencyFormat(string currencyName, string currencyCode)
         {
-            SelectElement currencyFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'currency']")));
-            currencyFormatSelect.SelectByText(currencyName);
+            SettingsPage settingsPage = new SettingsPage(browser);
+            settingsPage.SelectCurrency(currencyName);
+            settingsPage.Save();
 
-            new SettingsPage(browser).Save();
-
-            browser.FindElement(By.XPath("//td[@id = 'currency']")).GetAttribute("textContent");
-            string actualCurrency = browser.FindElement(By.XPath("//td[@id = 'currency']")).GetAttribute("textContent");
+            string actualCurrency = settingsPage.DepositPageCurrencyFld.GetAttribute("textContent");
 
             Assert.AreEqual(actualCurrency, currencyCode);
         } 
 
     }
+
+ 
 }
