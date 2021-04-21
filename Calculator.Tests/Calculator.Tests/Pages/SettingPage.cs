@@ -50,5 +50,13 @@ namespace Calculator.Tests.Pages
             SaveBtn.Click();
             driver.SwitchTo().Alert().Accept();
         }
+
+        public void Set(string dateFormat, string numberFormat, string currency)
+        {
+            SelectDateFormat(dateFormat);
+            SelectNumberFormat(numberFormat);
+            SelectCurrency(currency);
+            Save();
+        }
     }
 }

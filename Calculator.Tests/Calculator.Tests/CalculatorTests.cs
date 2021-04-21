@@ -31,18 +31,21 @@ namespace Calculator.Tests
 
 
             browser.FindElement(By.XPath("//button[text()='Settings']")).Click();
+           
+            SettingsPage settingsPage = new SettingsPage(browser);
+            settingsPage.Set("dd-MM-yyyy", "123 456 789.00", "$ - US dollar");
 
-            SelectElement dateFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'dateFormat']")));
+            /*SelectElement dateFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'dateFormat']")));
             dateFormatSelect.SelectByText("dd-MM-yyyy");
 
             SelectElement numberFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select [@id = 'numberFormat']")));
             numberFormatSelect.SelectByText("123 456 789.00");
 
             SelectElement currenceFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select [@id = 'currency']")));
-            currenceFormatSelect.SelectByText("$ - US dollar");
+            currenceFormatSelect.SelectByText("$ - US dollar");*/
 
-            browser.FindElement(By.XPath("//button[text()='Save']")).Click();
-            browser.SwitchTo().Alert().Accept();
+            //browser.FindElement(By.XPath("//button[text()='Save']")).Click();
+            //browser.SwitchTo().Alert().Accept();
 
         }
 
