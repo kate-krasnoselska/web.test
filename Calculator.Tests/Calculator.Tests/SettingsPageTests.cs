@@ -44,8 +44,8 @@ namespace Calculator.Tests
         [Test]
         public void PositiveTestLogoutBtnWork()
         {
-            SettingsPage settingsPage = new SettingsPage(browser);
             new SettingsPage(browser).Logout();
+
             string actual = browser.Url;
 
             Assert.AreEqual("http://127.0.0.1:8080/", actual);
