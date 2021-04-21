@@ -5,6 +5,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using System.Threading;
 
 namespace Calculator.Tests
 {
@@ -76,17 +77,21 @@ namespace Calculator.Tests
         [TestCase("123 456 789,00", "11 000,00", "1 000,00")]
         public void SelectNumberFormat (string format, string expectedIncome, string expectedInterest)
         {
-            SelectElement numberFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'numberFormat']")));
-            numberFormatSelect.SelectByText(format);
-
-            new SettingsPage(browser).Save();
+            SettingsPage settingsPage = new SettingsPage(browser);
+            settingsPage.SelectNumberFormat(format);
+            settingsPage.Save();
+            Thread.Sleep(5000);
 
             browser.FindElement(By.XPath("//td[2]//input[@id = 'amount']")).SendKeys("10000");
+
             browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
             browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("365");
             browser.FindElement(By.XPath("//input[@type][2]")).Click();
             browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
             browser.FindElement(By.XPath("//input [@id = 'interest']")).GetAttribute("value");
+            browser.FindElement(By.Id("calculateBtn")).Click();
+
+            Thread.Sleep(1000);
 
             string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
             string actualInterest = browser.FindElement(By.XPath("//input [@id = 'interest']")).GetAttribute("value");

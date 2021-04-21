@@ -27,7 +27,12 @@ namespace Calculator.Tests.Pages
             currencyFormatSelect.SelectByText(currencyName);
         }
 
-        public void SelectNumberFormat(string format, string expectedIncome, string expectedInterest) => driver.FindElement(By.XPath("//select[@id = 'numberFormat']"));
+        public void SelectNumberFormat(string format)
+        {
+            SelectElement numberFormatSelect = new SelectElement(element: driver.FindElement(By.XPath("//select[@id = 'numberFormat']")));
+            numberFormatSelect.SelectByText(format);
+
+        }
 
         public void SelectDateFormat (string format) => driver.FindElement(By.XPath("//select[@id = 'dateFormat']"));
 
