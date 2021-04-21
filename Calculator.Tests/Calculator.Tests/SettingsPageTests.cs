@@ -45,8 +45,7 @@ namespace Calculator.Tests
         public void PositiveTestLogoutBtnWork()
         {
             SettingsPage settingsPage = new SettingsPage(browser);
-            settingsPage.LogoutBtn.Click();
-            browser.SwitchTo().Alert().Accept();
+            new SettingsPage(browser).Logout();
             string actual = browser.Url;
 
             Assert.AreEqual("http://127.0.0.1:8080/", actual);
@@ -61,10 +60,8 @@ namespace Calculator.Tests
             SelectElement dateFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'dateFormat']")));
             dateFormatSelect.SelectByText(format);
 
-            SettingsPage settingsPage = new SettingsPage(browser);
-            settingsPage.SaveBtn.Click();
+            new SettingsPage(browser).Save();
 
-            browser.SwitchTo().Alert().Accept();
             browser.FindElement(By.XPath("//input [@id = 'term']")).GetAttribute("value");
             DateTime expected = DateTime.Today;
             string actual = browser.FindElement(By.XPath("//input [@id = 'endDate']")).GetAttribute("value");
@@ -81,10 +78,7 @@ namespace Calculator.Tests
             SelectElement numberFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'numberFormat']")));
             numberFormatSelect.SelectByText(format);
 
-            SettingsPage settingsPage = new SettingsPage(browser);
-            settingsPage.SaveBtn.Click();
-
-            browser.SwitchTo().Alert().Accept();
+            new SettingsPage(browser).Save();
 
             browser.FindElement(By.XPath("//td[2]//input[@id = 'amount']")).SendKeys("10000");
             browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
@@ -108,10 +102,8 @@ namespace Calculator.Tests
             SelectElement currencyFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'currency']")));
             currencyFormatSelect.SelectByText(currencyName);
 
-            SettingsPage settingsPage = new SettingsPage(browser);
-            settingsPage.SaveBtn.Click();
+            new SettingsPage(browser).Save();
 
-            browser.SwitchTo().Alert().Accept();
             browser.FindElement(By.XPath("//td[@id = 'currency']")).GetAttribute("textContent");
             string actualCurrency = browser.FindElement(By.XPath("//td[@id = 'currency']")).GetAttribute("textContent");
 
