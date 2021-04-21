@@ -6,6 +6,7 @@ namespace Calculator.Tests.Pages
     public class SettingsPage
     {
         private IWebDriver driver;
+
         public SettingsPage(IWebDriver driver)
         {
             this.driver = driver;
@@ -16,6 +17,12 @@ namespace Calculator.Tests.Pages
         public IWebElement SaveBtn => driver.FindElement(By.XPath("//button[text()='Save']"));
 
         public IWebElement CancelBtn => driver.FindElement(By.XPath("//button[@id = 'cancel']"));
+
+        public void SelectCurrency(string currencyName, string currencyCode) => driver.FindElement(By.XPath("//select[@id = 'currency']"));
+
+        public void SelectNumberFormat(string format, string expectedIncome, string expectedInterest) => driver.FindElement(By.XPath("//select[@id = 'numberFormat']"));
+
+        public void SelectDateFormat (string format) => driver.FindElement(By.XPath("//select[@id = 'dateFormat']"));
 
         public void Logout()
         {
