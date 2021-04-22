@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
@@ -49,9 +50,10 @@ namespace Calculator.Tests.Pages
         {
             SaveBtn.Click();
             driver.SwitchTo().Alert().Accept();
+            Thread.Sleep(1000);
         }
 
-        public void Set(string dateFormat, string numberFormat, string currency)
+        public void SetSettingsData(string dateFormat, string numberFormat, string currency)
         {
             SelectDateFormat(dateFormat);
             SelectNumberFormat(numberFormat);

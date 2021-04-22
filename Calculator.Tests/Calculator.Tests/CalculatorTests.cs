@@ -20,7 +20,6 @@ namespace Calculator.Tests
             browser.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
             browser.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
-
             //LoginPage loginPage = new LoginPage(browser);
             //loginPage.Login();
             new LoginPage(browser).Login();
@@ -29,11 +28,12 @@ namespace Calculator.Tests
             //browser.FindElement(By.Id("password")).SendKeys("newyork1");
             //browser.FindElement(By.Id("loginBtn")).Click();
 
-
             browser.FindElement(By.XPath("//button[text()='Settings']")).Click();
            
-            SettingsPage settingsPage = new SettingsPage(browser);
-            settingsPage.Set("dd-MM-yyyy", "123 456 789.00", "$ - US dollar");
+            //SettingsPage settingsPage = new SettingsPage(browser);
+            //settingsPage.Set("dd-MM-yyyy", "123 456 789.00", "$ - US dollar");
+
+            new SettingsPage(browser).SetSettingsData("dd-MM-yyyy", "123 456 789.00", "$ - US dollar");
 
             /*SelectElement dateFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'dateFormat']")));
             dateFormatSelect.SelectByText("dd-MM-yyyy");
@@ -43,9 +43,6 @@ namespace Calculator.Tests
 
             SelectElement currenceFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select [@id = 'currency']")));
             currenceFormatSelect.SelectByText("$ - US dollar");*/
-
-            //browser.FindElement(By.XPath("//button[text()='Save']")).Click();
-            //browser.SwitchTo().Alert().Accept();
 
         }
 

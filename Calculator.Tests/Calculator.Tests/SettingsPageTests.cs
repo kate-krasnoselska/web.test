@@ -78,7 +78,6 @@ namespace Calculator.Tests
             SettingsPage settingsPage = new SettingsPage(browser);
             settingsPage.SelectNumberFormat(format);
             settingsPage.Save();
-            Thread.Sleep(5000);
 
             browser.FindElement(By.XPath("//td[2]//input[@id = 'amount']")).SendKeys("10000");
 
