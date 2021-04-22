@@ -54,11 +54,6 @@ namespace Calculator.Tests
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login("test", "newyork11");
 
-            // browser.FindElement(By.Id("login")).SendKeys("test");
-            // browser.FindElement(By.Id("password")).SendKeys("newyork11");
-            // browser.FindElement(By.Id("loginBtn")).Click();
-            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
-
             Assert.AreEqual("Incorrect password!", loginPage.ErrorMessage);
         }
 
@@ -68,11 +63,6 @@ namespace Calculator.Tests
 
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login("test1", "newyork11");
-
-            // browser.FindElement(By.Id("login")).SendKeys("test1");
-            // browser.FindElement(By.Id("password")).SendKeys("newyork11");
-            // browser.FindElement(By.Id("loginBtn")).Click();
-            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
 
             Assert.AreEqual("'test1' user doesn't exist!", loginPage.ErrorMessage);
         }
@@ -84,11 +74,6 @@ namespace Calculator.Tests
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login(" ", " ");
 
-            // browser.FindElement(By.Id("login")).SendKeys(" ");
-            // browser.FindElement(By.Id("password")).SendKeys(" ");
-            // browser.FindElement(By.Id("loginBtn")).Click();
-            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
-
             Assert.AreEqual("User name and password cannot be empty!", loginPage.ErrorMessage);
         }
 
@@ -98,11 +83,6 @@ namespace Calculator.Tests
 
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login(" ", "newyork1");
-
-            // browser.FindElement(By.Id("login")).SendKeys(" ");
-            // browser.FindElement(By.Id("password")).SendKeys("newyork1");
-            // browser.FindElement(By.Id("loginBtn")).Click();
-            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
 
             Assert.AreEqual("User name and password cannot be empty!", loginPage.ErrorMessage);
         }
@@ -114,11 +94,6 @@ namespace Calculator.Tests
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login(" ", "newyork1");
 
-            // browser.FindElement(By.Id("login")).SendKeys("test");
-            // browser.FindElement(By.Id("password")).SendKeys(" ");
-            // browser.FindElement(By.Id("loginBtn")).Click();
-            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
-
             Assert.AreEqual("User name and password cannot be empty!", loginPage.ErrorMessage);
         }
 
@@ -128,11 +103,6 @@ namespace Calculator.Tests
 
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login("TEST", "newyork1");
-
-            // browser.FindElement(By.Id("login")).SendKeys("TEST");
-            // browser.FindElement(By.Id("password")).SendKeys("newyork1");
-            // browser.FindElement(By.Id("loginBtn")).Click();
-            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
 
             Assert.AreEqual("Incorrect user name!", loginPage.ErrorMessage);
         }
@@ -144,12 +114,6 @@ namespace Calculator.Tests
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login("test", "NEWYORK1");
 
-            // browser.FindElement(By.Id("login")).SendKeys("test");
-            //
-            // browser.FindElement(By.Id("password")).SendKeys("NEWYORK1");
-            // browser.FindElement(By.Id("loginBtn")).Click();
-            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
-
             Assert.AreEqual("Incorrect password!", loginPage.ErrorMessage);
         }
 
@@ -159,11 +123,6 @@ namespace Calculator.Tests
 
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login(" test", "newyork1");
-
-            // browser.FindElement(By.Id("login")).SendKeys(" test");
-            // browser.FindElement(By.Id("password")).SendKeys("newyork1");
-            // browser.FindElement(By.Id("loginBtn")).Click();
-            // string actual = browser.FindElement(By.Id("errorMessage")).Text;
 
             Assert.AreEqual("Incorrect user name!", loginPage.ErrorMessage);
         }

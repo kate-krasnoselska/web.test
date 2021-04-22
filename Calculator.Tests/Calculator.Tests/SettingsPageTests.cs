@@ -34,7 +34,8 @@ namespace Calculator.Tests
         [Test]
         public void PositiveTestCancelBtnWork()
         {
-            browser.FindElement(By.XPath("//button[text()='Cancel']")).Click();
+            SettingsPage settingsPage = new SettingsPage(browser);
+            settingsPage.CancelBtn.Click();
             string actual = browser.Url;
 
             Assert.AreEqual("http://127.0.0.1:8080/Deposit", actual);
@@ -43,8 +44,8 @@ namespace Calculator.Tests
         [Test]
         public void PositiveTestLogoutBtnWork()
         {
-            browser.FindElement(By.XPath("//button[text()='Logout']")).Click();
-            browser.SwitchTo().Alert().Accept();
+            new SettingsPage(browser).Logout();
+
             string actual = browser.Url;
 
             Assert.AreEqual("http://127.0.0.1:8080/", actual);
@@ -58,8 +59,9 @@ namespace Calculator.Tests
         {
             SelectElement dateFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'dateFormat']")));
             dateFormatSelect.SelectByText(format);
-            browser.FindElement(By.XPath("//button[text()='Save']")).Click();
-            browser.SwitchTo().Alert().Accept();
+
+            new SettingsPage(browser).Save();
+
             browser.FindElement(By.XPath("//input [@id = 'term']")).GetAttribute("value");
             DateTime expected = DateTime.Today;
             string actual = browser.FindElement(By.XPath("//input [@id = 'endDate']")).GetAttribute("value");
@@ -75,14 +77,16 @@ namespace Calculator.Tests
         {
             SelectElement numberFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'numberFormat']")));
             numberFormatSelect.SelectByText(format);
-            browser.FindElement(By.XPath("//button[text()='Save']")).Click();
-            browser.SwitchTo().Alert().Accept();
+
+            new SettingsPage(browser).Save();
+
             browser.FindElement(By.XPath("//td[2]//input[@id = 'amount']")).SendKeys("10000");
             browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
             browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("365");
             browser.FindElement(By.XPath("//input[@type][2]")).Click();
             browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
             browser.FindElement(By.XPath("//input [@id = 'interest']")).GetAttribute("value");
+
             string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
             string actualInterest = browser.FindElement(By.XPath("//input [@id = 'interest']")).GetAttribute("value");
 
@@ -97,8 +101,9 @@ namespace Calculator.Tests
         {
             SelectElement currencyFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'currency']")));
             currencyFormatSelect.SelectByText(currencyName);
-            browser.FindElement(By.XPath("//button[text()='Save']")).Click();
-            browser.SwitchTo().Alert().Accept();
+
+            new SettingsPage(browser).Save();
+
             browser.FindElement(By.XPath("//td[@id = 'currency']")).GetAttribute("textContent");
             string actualCurrency = browser.FindElement(By.XPath("//td[@id = 'currency']")).GetAttribute("textContent");
 
