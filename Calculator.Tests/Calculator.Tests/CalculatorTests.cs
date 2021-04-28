@@ -61,22 +61,23 @@ namespace Calculator.Tests
             browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("365");
             browser.FindElement(By.XPath("//input[@type][2]")).Click();
 
-            new WebDriverWait(browser, TimeSpan.FromSeconds(10))
-            .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//button [@id = 'calculateBtn']")));
+            //new WebDriverWait(browser, TimeSpan.FromSeconds(10))
+            //.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//button [@id = 'calculateBtn']")));
 
-            browser.FindElement(By.XPath("//button [@id = 'calculateBtn']")).Click();
+            //browser.FindElement(By.XPath("//button [@id = 'calculateBtn']")).Click();
+            //Thread.Sleep(1000);
 
             //new WebDriverWait(browser, TimeSpan.FromSeconds(10))
             //.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath("//input [@id = 'income']")));
 
-            Thread.Sleep(1000);
+            new CalculatorPage(browser).Calculate();
 
             string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
 
             Assert.AreEqual("110.00", actualIncome);
 
-            new WebDriverWait(browser, TimeSpan.FromSeconds(10))
-            .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath("//input [@id = 'interest']")));
+            //new WebDriverWait(browser, TimeSpan.FromSeconds(10))
+            //.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath("//input [@id = 'interest']")));
             string actualInterest = browser.FindElement(By.XPath("//input [@id = 'interest']")).GetAttribute("value");
 
             Assert.AreEqual("10.00", actualInterest);
@@ -89,9 +90,14 @@ namespace Calculator.Tests
             browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
             browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("360");
             browser.FindElement(By.XPath("//input[@type][1]")).Click();
-            browser.FindElement(By.XPath("//button [@id = 'calculateBtn']")).Click();
 
-            Thread.Sleep(1000);
+            //browser.FindElement(By.XPath("//button [@id = 'calculateBtn']")).Click();
+            //Thread.Sleep(1000);
+
+            //CalculatorPage calculatorPage = new CalculatorPage(browser);
+            //calculatorPage.Calculate();
+
+            new CalculatorPage(browser).Calculate();
 
             string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
             
@@ -107,10 +113,11 @@ namespace Calculator.Tests
             browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
             browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("365");
             browser.FindElement(By.XPath("//input[@type][2]")).Click();
-            public IWebElement CalculateBtn => browser.FindElement(By.XPath("//button [@id = 'calculateBtn']"));
-            
 
-           
+            CalculatorPage calculatorPage = new CalculatorPage(browser);
+            calculatorPage.CalculateBtn.GetAttribute("value");
+
+            Assert.AreEqual("CalculateBtn", calculatorPage.CalculateBtn);
 
             /*string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
 
