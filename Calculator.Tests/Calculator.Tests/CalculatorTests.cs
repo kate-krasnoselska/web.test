@@ -67,10 +67,8 @@ namespace Calculator.Tests
             //browser.FindElement(By.XPath("//button [@id = 'calculateBtn']")).Click();
             //Thread.Sleep(1000);
 
-            //new WebDriverWait(browser, TimeSpan.FromSeconds(10))
-            //.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath("//input [@id = 'income']")));
-
             new CalculatorPage(browser).Calculate();
+
 
             string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
 
@@ -91,8 +89,6 @@ namespace Calculator.Tests
             browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("360");
             browser.FindElement(By.XPath("//input[@type][1]")).Click();
 
-            //browser.FindElement(By.XPath("//button [@id = 'calculateBtn']")).Click();
-            //Thread.Sleep(1000);
 
             //CalculatorPage calculatorPage = new CalculatorPage(browser);
             //calculatorPage.Calculate();
@@ -115,9 +111,9 @@ namespace Calculator.Tests
             browser.FindElement(By.XPath("//input[@type][2]")).Click();
 
             CalculatorPage calculatorPage = new CalculatorPage(browser);
-            calculatorPage.CalculateBtn.GetAttribute("value");
+           
 
-            Assert.AreEqual("CalculateBtn", calculatorPage.CalculateBtn);
+            Assert.AreEqual(false, calculatorPage.CalculateBtn.Enabled);
 
             /*string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
 

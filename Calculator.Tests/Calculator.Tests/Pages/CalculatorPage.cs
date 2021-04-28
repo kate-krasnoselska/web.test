@@ -14,15 +14,18 @@ namespace Calculator.Tests.Pages
             this.driver = driver;
         }
 
-        public IWebElement CalculateBtn => driver.FindElement(By.XPath("//button [@id = 'calculateBtn']"));
+        private By CalculateBtnLocator = By.XPath("//button [@id = 'calculateBtn']");
+
+        public IWebElement CalculateBtn => driver.FindElement(CalculateBtnLocator);
 
         public void Calculate()
         {
             CalculateBtn.Click();
-            Thread.Sleep(1000);
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+            .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(CalculateBtnLocator));
+            Thread.Sleep(200);
         }
 
-        public string CalcBtnDisabled => driver.FindElement(By.XPath("//button [@id = 'calculateBtn']")).GetAttribute("value");
     }
 }
 
