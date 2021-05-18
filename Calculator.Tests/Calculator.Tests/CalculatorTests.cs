@@ -23,18 +23,25 @@ namespace Calculator.Tests
 
             //LoginPage loginPage = new LoginPage(browser);
             //loginPage.Login();
-            new LoginPage(browser).Login();
-            
+
+            //calculatorPage = new LoginPage(browser).Login();
+            //calculatorPage.OpenSettingsPage().SetSettingsData("dd-MM-yyyy", "123 456 789.00", "$ - US dollar");
+
+            new LoginPage(browser)
+                .Login()
+                .OpenSettingsPage()
+                .SetSettingsData("dd-MM-yyyy", "123 456 789.00", "$ - US dollar");
+
             //browser.FindElement(By.Id("login")).SendKeys("test");
             //browser.FindElement(By.Id("password")).SendKeys("newyork1");
             //browser.FindElement(By.Id("loginBtn")).Click();
 
-            browser.FindElement(By.XPath("//button[text()='Settings']")).Click();
-           
+            //browser.FindElement(By.XPath("//button[text()='Settings']")).Click();
+
             //SettingsPage settingsPage = new SettingsPage(browser);
             //settingsPage.Set("dd-MM-yyyy", "123 456 789.00", "$ - US dollar");
 
-            new SettingsPage(browser).SetSettingsData("dd-MM-yyyy", "123 456 789.00", "$ - US dollar");
+            //new SettingsPage(browser).SetSettingsData("dd-MM-yyyy", "123 456 789.00", "$ - US dollar");
 
             /*SelectElement dateFormatSelect = new SelectElement(element: browser.FindElement(By.XPath("//select[@id = 'dateFormat']")));
             dateFormatSelect.SelectByText("dd-MM-yyyy");
@@ -180,7 +187,7 @@ namespace Calculator.Tests
         [Test]
         public void TestSelectAnyStart()
         {
-            SelectElement daySelect = new SelectElement(element: browser.FindElement(By.XPath("//select [@id = 'day']")));
+            SelectElement daySelect = new (element: browser.FindElement(By.XPath("//select [@id = 'day']")));
 
             SelectElement monthSelect = new SelectElement(element: browser.FindElement(By.XPath("//select [@id = 'month']")));
 

@@ -18,6 +18,14 @@ namespace Calculator.Tests.Pages
 
         public IWebElement CalculateBtn => driver.FindElement(CalculateBtnLocator);
 
+        public IWebElement SettingsBtn => driver.FindElement(By.XPath("//button[text()='Settings']"));
+
+        public SettingsPage OpenSettingsPage()
+        {
+            SettingsBtn.Click();
+            return new SettingsPage(driver);
+        }
+
         public void Calculate()
         {
             CalculateBtn.Click();
