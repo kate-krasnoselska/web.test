@@ -33,6 +33,21 @@ namespace Calculator.Tests.Pages
             .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(CalculateBtnLocator));
             Thread.Sleep(200);
         }
+        public IWebElement DepositAmountFld => driver.FindElement(By.XPath("//td[2]//input[@id = 'amount']"));
+
+        public IWebElement RateOfInterestFld => driver.FindElement(By.XPath("//input [@id = 'percent']"));
+
+        public IWebElement InvestmentTermFld => driver.FindElement(By.XPath("//input [@id = 'term']"));
+
+        public IWebElement IFinancialYearRadio365 => driver.FindElement(By.XPath("//input[@type][2]"));
+
+        public IWebElement IFinancialYearRadio360 => driver.FindElement(By.XPath("//input[@type][1]"));
+
+        
+
+
+
+        
 
     }
 }
