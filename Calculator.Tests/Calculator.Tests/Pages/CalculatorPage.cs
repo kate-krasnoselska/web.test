@@ -47,6 +47,14 @@ namespace Calculator.Tests.Pages
 
         public IWebElement InterestEarned => driver.FindElement(By.XPath("//input [@id = 'interest']"));
 
+        public IWebElement EndDate => driver.FindElement(By.XPath("//input [@id = 'endDate']"));
+
+        public IWebElement InterestEarnedLayout => driver.FindElement(By.XPath("//th [contains(text(), 'Interest earned')]"));
+
+        public IWebElement ActualIncome => driver.FindElement(By.XPath("//input [@id = 'income']"));
+
+        public IWebElement ActualInterest => driver.FindElement(By.XPath("//input [@id = 'interest']"));
+
         public void EnterCalculatorData365days(string deposit, string rate, string term)
         {
             DepositAmountFld.SendKeys(deposit);
