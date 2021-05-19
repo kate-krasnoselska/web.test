@@ -67,10 +67,13 @@ namespace Calculator.Tests
 
             new CalculatorPage(browser).Calculate();
 
-            string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
+            Thread.Sleep(1000);
+
+            CalculatorPage calculatorPage = new CalculatorPage(browser);
+            string actualIncome = calculatorPage.ActualIncome.GetAttribute("value");
             Assert.AreEqual("110.00", actualIncome);
-           
-            string actualInterest = browser.FindElement(By.XPath("//input [@id = 'interest']")).GetAttribute("value");
+
+            string actualInterest = calculatorPage.ActualInterest.GetAttribute("value");
             Assert.AreEqual("10.00", actualInterest);
 
             //calculatorPage.DepositAmountFld.SendKeys("100");
@@ -100,11 +103,13 @@ namespace Calculator.Tests
                 .EnterCalculatorData360days("100", "10", "360");
 
             new CalculatorPage(browser).Calculate();
+            Thread.Sleep(1000);
 
-            string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
+            CalculatorPage calculatorPage = new CalculatorPage(browser);
+            string actualIncome = calculatorPage.ActualIncome.GetAttribute("value");
             Assert.AreEqual("110.00", actualIncome);
 
-            string actualInterest = browser.FindElement(By.XPath("//input [@id = 'interest']")).GetAttribute("value");
+            string actualInterest = calculatorPage.ActualInterest.GetAttribute("value");
             Assert.AreEqual("10.00", actualInterest);
         }
 
