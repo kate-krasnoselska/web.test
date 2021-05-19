@@ -39,16 +39,26 @@ namespace Calculator.Tests.Pages
 
         public IWebElement InvestmentTermFld => driver.FindElement(By.XPath("//input [@id = 'term']"));
 
-        public IWebElement IFinancialYearRadio365 => driver.FindElement(By.XPath("//input[@type][2]"));
+        public IWebElement FinancialYearRadio365 => driver.FindElement(By.XPath("//input[@type][2]"));
 
-        public IWebElement IFinancialYearRadio360 => driver.FindElement(By.XPath("//input[@type][1]"));
-
-        
+        public IWebElement FinancialYearRadio360 => driver.FindElement(By.XPath("//input[@type][1]"));
 
 
+        public void EnterCalculatorData365days(string deposit, string rate, string term)
+        {
+            DepositAmountFld.SendKeys(deposit);
+            RateOfInterestFld.SendKeys(rate);
+            InvestmentTermFld.SendKeys(term);
+            FinancialYearRadio365.Click();
+        }
 
-        
-
+        public void EnterCalculatorData360days(string deposit, string rate, string term)
+        {
+            DepositAmountFld.SendKeys(deposit);
+            RateOfInterestFld.SendKeys(rate);
+            InvestmentTermFld.SendKeys(term);
+            FinancialYearRadio360.Click();
+        }
     }
 }
 

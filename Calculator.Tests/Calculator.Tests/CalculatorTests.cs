@@ -21,16 +21,16 @@ namespace Calculator.Tests
             browser.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
             browser.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
+            new LoginPage(browser)
+                .Login()
+                .OpenSettingsPage()
+                .SetSettingsData("dd-MM-yyyy", "123 456 789.00", "$ - US dollar");
+
             //LoginPage loginPage = new LoginPage(browser);
             //loginPage.Login();
 
             //calculatorPage = new LoginPage(browser).Login();
             //calculatorPage.OpenSettingsPage().SetSettingsData("dd-MM-yyyy", "123 456 789.00", "$ - US dollar");
-
-            new LoginPage(browser)
-                .Login()
-                .OpenSettingsPage()
-                .SetSettingsData("dd-MM-yyyy", "123 456 789.00", "$ - US dollar");
 
             //browser.FindElement(By.Id("login")).SendKeys("test");
             //browser.FindElement(By.Id("password")).SendKeys("newyork1");
@@ -63,15 +63,23 @@ namespace Calculator.Tests
         [Test]
         public void PositiveTestCalculator365days()
         {
-            CalculatorPage calculatorPage = new CalculatorPage(browser);
+            new CalculatorPage(browser)
+                .EnterCalculatorData365days("100", "10", "365");
 
-            calculatorPage.DepositAmountFld.SendKeys("100");
+            new CalculatorPage(browser).Calculate();
 
-            calculatorPage.RateOfInterestFld.SendKeys("10");
+            string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
 
-            calculatorPage.InvestmentTermFld.SendKeys("365");
+            Assert.AreEqual("110.00", actualIncome);
+           
+            string actualInterest = browser.FindElement(By.XPath("//input [@id = 'interest']")).GetAttribute("value");
 
-            calculatorPage.IFinancialYearRadio365.Click();
+            Assert.AreEqual("10.00", actualInterest);
+
+            //calculatorPage.DepositAmountFld.SendKeys("100");
+            //calculatorPage.RateOfInterestFld.SendKeys("10");
+            //calculatorPage.InvestmentTermFld.SendKeys("365");
+            //calculatorPage.FinancialYearRadio365.Click();
 
             //browser.FindElement(By.XPath("//td[2]//input[@id = 'amount']")).SendKeys("100");
             //browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
@@ -84,40 +92,16 @@ namespace Calculator.Tests
             //browser.FindElement(By.XPath("//button [@id = 'calculateBtn']")).Click();
             //Thread.Sleep(1000);
 
-            new CalculatorPage(browser).Calculate();
-
-            string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
-
-            Assert.AreEqual("110.00", actualIncome);
-
             //new WebDriverWait(browser, TimeSpan.FromSeconds(10))
             //.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.XPath("//input [@id = 'interest']")));
-            string actualInterest = browser.FindElement(By.XPath("//input [@id = 'interest']")).GetAttribute("value");
-
-            Assert.AreEqual("10.00", actualInterest);
         }
 
         [Test]
         public void PositiveTestCalculator360days()
         {
 
-            CalculatorPage calculatorPage = new CalculatorPage(browser);
-
-            calculatorPage.DepositAmountFld.SendKeys("100");
-
-            calculatorPage.RateOfInterestFld.SendKeys("10");
-
-            calculatorPage.InvestmentTermFld.SendKeys("360");
-
-            calculatorPage.IFinancialYearRadio360.Click();
-
-            //browser.FindElement(By.XPath("//input[@id = 'amount']")).SendKeys("100");
-            //browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
-            //browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("360");
-            //browser.FindElement(By.XPath("//input[@type][1]")).Click();
-
-            //CalculatorPage calculatorPage = new CalculatorPage(browser);
-            //calculatorPage.Calculate();
+            new CalculatorPage(browser)
+                .EnterCalculatorData360days("100", "10", "360");
 
             new CalculatorPage(browser).Calculate();
 
@@ -131,21 +115,15 @@ namespace Calculator.Tests
         [Test]
         public void PositiveTestDepositAmountIsMandatoryField()
         {
+            // NEED HELP I can not use method new CalculatorPage(browser)
+            // .EnterCalculatorData365days("100", "10", "365");
+            // because line 127 shows an Error. Let's discuss
             CalculatorPage calculatorPage = new CalculatorPage(browser);
-
             calculatorPage.DepositAmountFld.SendKeys(" ");
-
             calculatorPage.RateOfInterestFld.SendKeys("10");
-
             calculatorPage.InvestmentTermFld.SendKeys("365");
+            calculatorPage.FinancialYearRadio365.Click();
 
-            calculatorPage.IFinancialYearRadio365.Click();
-
-            //browser.FindElement(By.XPath("//td[2]//input[@id = 'amount']")).SendKeys(" ");
-            //browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
-            //browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("365");
-            //browser.FindElement(By.XPath("//input[@type][2]")).Click();
-           
             Assert.AreEqual(false, calculatorPage.CalculateBtn.Enabled);
 
             /*string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
@@ -159,28 +137,11 @@ namespace Calculator.Tests
         public void PositiveTestRateOfInterestIsMandatoryField()
         {
             CalculatorPage calculatorPage = new CalculatorPage(browser);
-
-            calculatorPage.DepositAmountFld.SendKeys("100");
-
-            calculatorPage.RateOfInterestFld.SendKeys(" ");
-
-            calculatorPage.InvestmentTermFld.SendKeys("365");
-
-            calculatorPage.IFinancialYearRadio365.Click();
+            
+            new CalculatorPage(browser)
+                .EnterCalculatorData365days("100", " ", "365");
 
             Assert.AreEqual(false, calculatorPage.CalculateBtn.Enabled);
-
-            //browser.FindElement(By.XPath("//td[2]//input[@id = 'amount']")).SendKeys("100");
-            //browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys(" ");
-            //browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("365");
-            //browser.FindElement(By.XPath("//input[@type][2]")).Click();
-            //string actualIncome = browser.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
-
-            //browser.FindElement(By.XPath("//button [@id = 'calculateBtn']")).Click();
-
-            //Assert.AreEqual("0.00", actualIncome);
-            //string actualInterest = browser.FindElement(By.XPath("//input [@id = 'interest']")).GetAttribute("value");
-            //Assert.AreEqual("0.00", actualInterest);
         }
 
         [Test]
@@ -194,7 +155,7 @@ namespace Calculator.Tests
 
             calculatorPage.InvestmentTermFld.SendKeys(" ");
 
-            calculatorPage.IFinancialYearRadio365.Click();
+            calculatorPage.FinancialYearRadio365.Click();
 
             Assert.AreEqual(false, calculatorPage.CalculateBtn.Enabled);
 
