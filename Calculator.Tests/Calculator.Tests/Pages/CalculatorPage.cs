@@ -43,6 +43,9 @@ namespace Calculator.Tests.Pages
 
         public IWebElement FinancialYearRadio360 => driver.FindElement(By.XPath("//input[@type][1]"));
 
+        public IWebElement Income => driver.FindElement(By.XPath("//input [@id = 'income']"));
+
+        public IWebElement InterestEarned => driver.FindElement(By.XPath("//input [@id = 'interest']"));
 
         public void EnterCalculatorData365days(string deposit, string rate, string term)
         {
