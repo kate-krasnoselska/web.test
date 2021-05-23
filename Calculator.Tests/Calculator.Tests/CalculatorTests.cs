@@ -62,15 +62,15 @@ namespace Calculator.Tests
         [Test]
         public void PositiveTestCalculator365days()
         {
-            new CalculatorPage(browser)
-                .EnterCalculatorData365days("100", "10", "365");
-
-            new CalculatorPage(browser).Calculate();
-
-            Thread.Sleep(1000);
-
             CalculatorPage calculatorPage = new CalculatorPage(browser);
-            string actualIncome = calculatorPage.ActualIncome.GetAttribute("value");
+
+            calculatorPage
+                .EnterCalculatorData("100", "10", "365", true);
+
+            calculatorPage
+                .Calculate();
+
+            string actualIncome = calculatorPage.ActualIncome;
             Assert.AreEqual("110.00", actualIncome);
 
             string actualInterest = calculatorPage.ActualInterest.GetAttribute("value");
@@ -99,14 +99,14 @@ namespace Calculator.Tests
         [Test]
         public void PositiveTestCalculator360days()
         {
-            new CalculatorPage(browser)
-                .EnterCalculatorData360days("100", "10", "360");
-
-            new CalculatorPage(browser).Calculate();
-            Thread.Sleep(1000);
-
             CalculatorPage calculatorPage = new CalculatorPage(browser);
-            string actualIncome = calculatorPage.ActualIncome.GetAttribute("value");
+            calculatorPage
+                .EnterCalculatorData("100", "10", "360", false);
+
+            calculatorPage
+                .Calculate();
+
+            string actualIncome = calculatorPage.ActualIncome;
             Assert.AreEqual("110.00", actualIncome);
 
             string actualInterest = calculatorPage.ActualInterest.GetAttribute("value");
@@ -119,9 +119,9 @@ namespace Calculator.Tests
             CalculatorPage calculatorPage = new CalculatorPage(browser);
 
             new CalculatorPage(browser)
-                .EnterCalculatorData365days(" ", "10", "365");
+                .EnterCalculatorData(" ", "10", "365", true);
 
-            Assert.AreEqual(false, calculatorPage.CalculateBtn.Enabled);
+            Assert.IsFalse(calculatorPage.CalculateBtn.Enabled);
         }
 
         [Test]
@@ -130,9 +130,9 @@ namespace Calculator.Tests
             CalculatorPage calculatorPage = new CalculatorPage(browser);
 
             new CalculatorPage(browser)
-                .EnterCalculatorData365days("100", " ", "365");
+                .EnterCalculatorData ("100", " ", "365", true);
 
-            Assert.AreEqual(false, calculatorPage.CalculateBtn.Enabled);
+            Assert.IsFalse(calculatorPage.CalculateBtn.Enabled);
         }
 
         [Test]
@@ -140,10 +140,10 @@ namespace Calculator.Tests
         {
             CalculatorPage calculatorPage = new CalculatorPage(browser);
 
-            new CalculatorPage(browser)
-                .EnterCalculatorData365days("100", "10", " ");
+            calculatorPage
+                .EnterCalculatorData("100", "10", " ", true);
 
-            Assert.AreEqual(false, calculatorPage.CalculateBtn.Enabled);
+            Assert.IsFalse(calculatorPage.CalculateBtn.Enabled);
         }
 
         [Test]
@@ -152,7 +152,7 @@ namespace Calculator.Tests
             CalculatorPage calculatorPage = new CalculatorPage(browser);
 
             new CalculatorPage(browser)
-                .EnterCalculatorData365days("100", "10", "365");
+                .EnterCalculatorData ("100", "10", "365", true);
 
             SelectElement daySelect = new SelectElement(element: browser.FindElement(By.XPath("//select [@id = 'day']")));
             string day = daySelect.SelectedOption.Text;
@@ -223,7 +223,7 @@ namespace Calculator.Tests
             CalculatorPage calculatorPage = new CalculatorPage(browser);
 
             new CalculatorPage(browser)
-                .EnterCalculatorData365days("100", "10", "7");
+                .EnterCalculatorData ("100", "10", "7", true);
 
             new CalculatorPage(browser).Calculate();
 
@@ -249,14 +249,14 @@ namespace Calculator.Tests
         public void PositiveTestMaxDepositAmount100000()
         {
             new CalculatorPage(browser)
-                .EnterCalculatorData365days("100000", "10", "365");
+                .EnterCalculatorData ("100000", "10", "365", true);
 
             new CalculatorPage(browser).Calculate();
 
             Thread.Sleep(1000);
 
             CalculatorPage calculatorPage = new CalculatorPage(browser);
-            string actualIncome = calculatorPage.ActualIncome.GetAttribute("value");
+            string actualIncome = calculatorPage.ActualIncome;
             Assert.AreEqual("110 000.00", actualIncome);
 
             string actualInterest = calculatorPage.ActualInterest.GetAttribute("value");
@@ -267,14 +267,14 @@ namespace Calculator.Tests
         public void PositiveTestMaxInterestRate100()
         {
             new CalculatorPage(browser)
-                .EnterCalculatorData365days("100000", "100", "365");
+                .EnterCalculatorData ("100000", "100", "365", true);
 
             new CalculatorPage(browser).Calculate();
 
             Thread.Sleep(1000);
 
             CalculatorPage calculatorPage = new CalculatorPage(browser);
-            string actualIncome = calculatorPage.ActualIncome.GetAttribute("value");
+            string actualIncome = calculatorPage.ActualIncome;
             Assert.AreEqual("200 000.00", actualIncome);
 
             string actualInterest = calculatorPage.ActualInterest.GetAttribute("value");

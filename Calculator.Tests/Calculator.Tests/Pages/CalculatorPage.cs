@@ -31,9 +31,12 @@ namespace Calculator.Tests.Pages
             CalculateBtn.Click();
             new WebDriverWait(driver, TimeSpan.FromSeconds(10))
             .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(CalculateBtnLocator));
-            Thread.Sleep(200);
+            Thread.Sleep(1000);
         }
-        public IWebElement DepositAmountFld => driver.FindElement(By.XPath("//td[2]//input[@id = 'amount']"));
+
+       
+
+        public IWebElement DepositAmountFld => driver.FindElement(By.XPath("//input[@id = 'amount']"));
 
         public IWebElement RateOfInterestFld => driver.FindElement(By.XPath("//input [@id = 'percent']"));
 
@@ -51,11 +54,11 @@ namespace Calculator.Tests.Pages
 
         public IWebElement InterestEarnedLayout => driver.FindElement(By.XPath("//th [contains(text(), 'Interest earned')]"));
 
-        public IWebElement ActualIncome => driver.FindElement(By.XPath("//input [@id = 'income']"));
+        public string ActualIncome => driver.FindElement(By.XPath("//input [@id = 'income']")).GetAttribute("value");
 
         public IWebElement ActualInterest => driver.FindElement(By.XPath("//input [@id = 'interest']"));
 
-        public void EnterCalculatorData365days(string deposit, string rate, string term)
+        /*public void EnterCalculatorData365days(string deposit, string rate, string term)
         {
             DepositAmountFld.SendKeys(deposit);
             RateOfInterestFld.SendKeys(rate);
@@ -69,6 +72,23 @@ namespace Calculator.Tests.Pages
             RateOfInterestFld.SendKeys(rate);
             InvestmentTermFld.SendKeys(term);
             FinancialYearRadio360.Click();
+        }*/
+
+        public void EnterCalculatorData(string deposit, string rate, string term, bool year365)
+        {
+            DepositAmountFld.SendKeys(deposit);
+            RateOfInterestFld.SendKeys(rate);
+            InvestmentTermFld.SendKeys(term);
+            if (year365)
+            {
+                FinancialYearRadio365.Click();
+            }
+            else
+            {
+                FinancialYearRadio360.Click();
+            }
+        
+
         }
     }
 }
