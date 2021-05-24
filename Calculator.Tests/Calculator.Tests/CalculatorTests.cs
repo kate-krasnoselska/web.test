@@ -140,8 +140,7 @@ namespace Calculator.Tests
         {
             CalculatorPage calculatorPage = new CalculatorPage(browser);
 
-            calculatorPage
-                .EnterCalculatorData("100", "10", " ", true);
+            calculatorPage.EnterCalculatorData("100", "10", " ", true);
 
             Assert.IsFalse(calculatorPage.CalculateBtn.Enabled);
         }
@@ -149,38 +148,27 @@ namespace Calculator.Tests
         [Test]
         public void TestStartDateIsToday()
         {
-            CalculatorPage calculatorPage = new CalculatorPage(browser);
-
-            new CalculatorPage(browser)
-                .EnterCalculatorData ("100", "10", "365", true);
-
-            SelectElement daySelect = new SelectElement(element: browser.FindElement(By.XPath("//select [@id = 'day']")));
-            string day = daySelect.SelectedOption.Text;
-            SelectElement monthSelect = new SelectElement(element: browser.FindElement(By.XPath("//select [@id = 'month']")));
-            string month = monthSelect.SelectedOption.Text;
-            SelectElement yearSelect = new SelectElement(element: browser.FindElement(By.XPath("//select [@id = 'year']")));
-
-            string year = yearSelect.SelectedOption.Text;
-            string actualDate = day + "/" + month + "/" + year;
-            string expectedDate = DateTime.Today.ToString("d/MMMM/yyyy", CultureInfo.InvariantCulture);
-
-            Assert.AreEqual(expectedDate, actualDate);
+            Assert.AreEqual(DateTime.Today, new CalculatorPage(browser).StartDate);
         }
 
         [Test]
         public void TestSelectAnyStart()
         {
-            SelectElement daySelect = new (element: browser.FindElement(By.XPath("//select [@id = 'day']")));
+            CalculatorPage calculatorPage = new CalculatorPage(browser);
+            calculatorPage.StartDate = new DateTime(2022, 4, 2);
 
-            SelectElement monthSelect = new SelectElement(element: browser.FindElement(By.XPath("//select [@id = 'month']")));
-
-            SelectElement yearSelect = new SelectElement(element: browser.FindElement(By.XPath("//select [@id = 'year']")));
-            daySelect.SelectByText("2");
-            monthSelect.SelectByText("April");
-            yearSelect.SelectByText("2022");
-            string actualDate = daySelect.SelectedOption.Text + " " + monthSelect.SelectedOption.Text + " " + yearSelect.SelectedOption.Text;
+            string actualDate = calculatorPage.StartDate.ToString("d MMMM yyyy", CultureInfo.InvariantCulture);
 
             Assert.AreEqual("2 April 2022", actualDate);
+            /*SelectElement daySelect = new (element: browser.FindElement(By.XPath("//select [@id = 'day']")));
+
+           SelectElement monthSelect = new SelectElement(element: browser.FindElement(By.XPath("//select [@id = 'month']")));
+
+           SelectElement yearSelect = new SelectElement(element: browser.FindElement(By.XPath("//select [@id = 'year']")));
+           daySelect.SelectByText("2");
+           monthSelect.SelectByText("April");
+           yearSelect.SelectByText("2022");
+           string actualDate = daySelect.SelectedOption.Text + " " + monthSelect.SelectedOption.Text + " " + yearSelect.SelectedOption.Text;*/
         }
 
         [Test]

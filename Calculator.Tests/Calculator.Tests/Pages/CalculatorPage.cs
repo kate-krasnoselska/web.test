@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -34,7 +35,27 @@ namespace Calculator.Tests.Pages
             Thread.Sleep(1000);
         }
 
-       
+
+        private SelectElement DaySelect => new SelectElement (element: driver.FindElement(By.XPath("//select [@id = 'day']")));
+        private SelectElement MonthSelect => new SelectElement(element: driver.FindElement(By.XPath("//select [@id = 'month']")));
+        private SelectElement YearSelect => new SelectElement(element: driver.FindElement(By.XPath("//select [@id = 'year']")));
+
+        public DateTime StartDate
+        {
+            get
+            {
+                int day = int.Parse(DaySelect.SelectedOption.Text);
+                int month = DateTime.ParseExact(MonthSelect.SelectedOption.Text, "MMMM", CultureInfo.CurrentCulture).Month;
+                int year = int.Parse(YearSelect.SelectedOption.Text);
+                return new DateTime(year, month, day);
+            }
+            set
+            {
+                DaySelect.SelectByIndex(value.Day-1);
+                MonthSelect.SelectByIndex(value.Month-1);
+                YearSelect.SelectByText(value.Year.ToString());
+            }
+        }
 
         public IWebElement DepositAmountFld => driver.FindElement(By.XPath("//input[@id = 'amount']"));
 
