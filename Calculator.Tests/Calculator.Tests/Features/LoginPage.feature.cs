@@ -1,0 +1,6 @@
+#error (1:1): expected: #EOF, #Language, #TagLine, #FeatureLine, #Comment, #Empty, got 'Scenario: Login with correct login and incorrect password'
+#error (2:2): expected: #EOF, #Language, #TagLine, #FeatureLine, #Comment, #Empty, got 'Given I navigate to Login Page'
+#error (3:2): expected: #EOF, #Language, #TagLine, #FeatureLine, #Comment, #Empty, got 'When I enter 'test1' to login field'
+#error (4:3): expected: #EOF, #Language, #TagLine, #FeatureLine, #Comment, #Empty, got 'And I enter 'newyork11' to password field'
+#error (5:3): expected: #EOF, #Language, #TagLine, #FeatureLine, #Comment, #Empty, got 'And click the Login button'
+#error (6:2): expected: #EOF, #Language, #TagLine, #FeatureLine, #Comment, #Empty, got 'Then I see the shown error ''test1' user doesn't exist!''
