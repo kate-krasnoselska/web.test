@@ -54,7 +54,18 @@ namespace Calculator.Tests
             //Assert.AreEqual(historyPage.CalculatedAmount, " ");
         }
 
+        [Test]
+        public void HeaderAmountIsDisplayed()
+        {
+            HistoryPage historyPage = new HistoryPage(browser);
+            historyPage.HeaderAmount.GetAttribute("textContent");
 
+            string actualHeaderAmount = historyPage.HeaderAmount.GetAttribute("textContent");
+
+            Assert.AreEqual("Amount", actualHeaderAmount);
+        }
+
+      
     }
 }
 
