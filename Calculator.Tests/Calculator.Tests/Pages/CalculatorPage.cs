@@ -21,6 +21,13 @@ namespace Calculator.Tests.Pages
 
         public IWebElement SettingsBtn => driver.FindElement(By.XPath("//button[text()='Settings']"));
 
+        public IWebElement HistoryBtn => driver.FindElement(By.XPath("//button[text()='History']"));
+
+        public HistoryPage OpenHistoryPage()
+        {
+            HistoryBtn.Click();
+            return new HistoryPage(driver);
+        }
         public SettingsPage OpenSettingsPage()
         {
             SettingsBtn.Click();

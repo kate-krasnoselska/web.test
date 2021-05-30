@@ -21,14 +21,13 @@ namespace Calculator.Tests
 
             new LoginPage(browser).Login();
 
-            browser.FindElement(By.XPath("//td[2]//input[@id = 'amount']")).SendKeys("100");
-            browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
-            browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("365");
-            browser.FindElement(By.XPath("//input[@type][2]")).Click();
-
+            new CalculatorPage(browser).EnterCalculatorData("100", "10", "365", true);
             new CalculatorPage(browser).Calculate();
+            // can not make these two methods as one, because part of .Calculate is Private
 
-            browser.FindElement(By.XPath("//button[text()='History']")).Click();
+            new CalculatorPage(browser).OpenHistoryPage();
+
+            //browser.FindElement(By.XPath("//button[text()='History']")).Click();
         }
 
         [TearDown]
