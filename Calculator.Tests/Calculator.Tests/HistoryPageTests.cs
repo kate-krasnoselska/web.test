@@ -25,6 +25,7 @@ namespace Calculator.Tests
             browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
             browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("365");
             browser.FindElement(By.XPath("//input[@type][2]")).Click();
+
             new CalculatorPage(browser).Calculate();
 
             browser.FindElement(By.XPath("//button[text()='History']")).Click();
@@ -37,7 +38,7 @@ namespace Calculator.Tests
         }
 
         [Test]
-        public void PositiveTestCalculatorButtonWork()
+        public void CalculatorButtonWork()
         {
             HistoryPage historyPage = new HistoryPage(browser);
             historyPage.CalculatorBtn.Click();
@@ -48,15 +49,15 @@ namespace Calculator.Tests
         }
 
         [Test]
-        public void PositiveTestClearBtnWork()
+        public void ClearBtnWork()
         {
             HistoryPage historyPage = new HistoryPage(browser);
-            string actual = historyPage.CalculatedAmount.GetAttribute("value");
             historyPage.ClearBtn.Click();
-            
-
-            Assert.AreEqual(historyPage.CalculatedAmount, " ");
+            // NEED HELP: Which assert to use here? I want to say that data is cleared
+            //Assert.AreEqual(historyPage.CalculatedAmount, " ");
         }
+
+    
     }
 }
 

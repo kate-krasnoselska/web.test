@@ -23,7 +23,9 @@ namespace Calculator.Tests.Pages
         }
 
         public string CalcBtnDisabled => driver.FindElement(By.XPath("//button [@id = 'calculateBtn']")).GetAttribute("value");
+
     }
+
 }
 
 

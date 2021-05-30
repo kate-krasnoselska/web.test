@@ -14,7 +14,8 @@ namespace Calculator.Tests.Pages
         public IWebElement CalculatorBtn => driver.FindElement(By.XPath("//button[text()='Calculator']"));
 
         public IWebElement ClearBtn => driver.FindElement(By.XPath("//button[@id = 'clear']"));
-        public IWebElement CalculatedAmount => driver.FindElement(By.XPath(".//td[1]"));
+
+        //public IWebElement CalculatedAmount => driver.FindElement(By.XPath(".//td[1]"));
 
         //public IWebElement CalculatedData => driver.FindElement(By.XPath(".//tr[@class = 'data']"));
 
