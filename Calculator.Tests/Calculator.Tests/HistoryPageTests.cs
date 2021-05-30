@@ -26,8 +26,6 @@ namespace Calculator.Tests
             // can not make these two methods as one, because part of .Calculate is Private
 
             new CalculatorPage(browser).OpenHistoryPage();
-
-            //browser.FindElement(By.XPath("//button[text()='History']")).Click();
         }
 
         [TearDown]

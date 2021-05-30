@@ -23,7 +23,9 @@ namespace Calculator.Tests
 
             new LoginPage(browser).Login();
 
-            browser.FindElement(By.XPath("//button[text()='Settings']")).Click();
+            new CalculatorPage(browser).OpenSettingsPage();
+
+            //browser.FindElement(By.XPath("//button[text()='Settings']")).Click();
         }
 
         [TearDown]
