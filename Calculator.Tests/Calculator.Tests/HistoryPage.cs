@@ -18,13 +18,7 @@ namespace Calculator.Tests.Pages
 
         public IWebElement HeaderAmount => driver.FindElement(By.XPath("//tr[@class = 'header']//th[text() = 'Amount']"));
 
-        // public string HeaderAmountText => driver.FindElement(By.XPath("//tr[@class = 'header']//th[text() = 'Amount']")).GetAttribute("value");
-
-        // public IWebElement CalculatedAmount => driver.FindElement(By.XPath(".//td[1]"));
-
-        // public IWebElement CalculatedData => driver.FindElement(By.XPath(".//tr[@class = 'data']"));
-
-        // public string CalculatedDataCleared => driver.FindElement(By.ClassName("data")).GetAttribute("value");
+        public IWebElement CalculatedData => driver.FindElement(By.XPath("//tr[@class = 'data']//td[text() = '100']"));
     }
 
 }

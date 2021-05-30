@@ -49,9 +49,13 @@ namespace Calculator.Tests
         public void ClearBtnWork()
         {
             HistoryPage historyPage = new HistoryPage(browser);
+            //historyPage.CalculatedData.GetAttribute("textContent");
+
             historyPage.ClearBtn.Click();
-            // NEED HELP: Which assert to use here? I want to say that data is cleared
-            //Assert.AreEqual(historyPage.CalculatedAmount, " ");
+
+            Assert.IsFalse(historyPage.CalculatedData.Displayed);
+            //Assert.IsFalse(calculatorPage.CalculateBtn.Enabled);
+            //Assert.AreEqual(" ", actualCalculatedData);
         }
 
         [Test]
@@ -64,6 +68,19 @@ namespace Calculator.Tests
 
             Assert.AreEqual("Amount", actualHeaderAmount);
         }
+
+        [Test]
+        public void CalculatedDataIsDisplayed()
+        {
+            HistoryPage historyPage = new HistoryPage(browser);
+            historyPage.CalculatedData.GetAttribute("textContent");
+
+            string actualCalculatedData = historyPage.CalculatedData.GetAttribute("textContent");
+
+            Assert.AreEqual("100", actualCalculatedData);
+        }
+
+
 
       
     }
