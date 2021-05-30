@@ -21,6 +21,12 @@ namespace Calculator.Tests
 
             new LoginPage(browser).Login();
 
+            browser.FindElement(By.XPath("//td[2]//input[@id = 'amount']")).SendKeys("100");
+            browser.FindElement(By.XPath("//input [@id = 'percent']")).SendKeys("10");
+            browser.FindElement(By.XPath("//input [@id = 'term']")).SendKeys("365");
+            browser.FindElement(By.XPath("//input[@type][2]")).Click();
+            new CalculatorPage(browser).Calculate();
+
             browser.FindElement(By.XPath("//button[text()='History']")).Click();
         }
 
@@ -33,10 +39,23 @@ namespace Calculator.Tests
         [Test]
         public void PositiveTestCalculatorButtonWork()
         {
-            browser.FindElement(By.XPath("//button[text()='Calculator']")).Click();
-            string actual = browser.Url;
-            Assert.AreEqual("http://127.0.0.1:8080/Deposit", actual);
+            HistoryPage historyPage = new HistoryPage(browser);
+            historyPage.CalculatorBtn.Click();
 
+            string actual = browser.Url;
+
+            Assert.AreEqual("http://127.0.0.1:8080/Deposit", actual);
+        }
+
+        [Test]
+        public void PositiveTestClearBtnWork()
+        {
+            HistoryPage historyPage = new HistoryPage(browser);
+            string actual = historyPage.CalculatedAmount.GetAttribute("value");
+            historyPage.ClearBtn.Click();
+            
+
+            Assert.AreEqual(historyPage.CalculatedAmount, " ");
         }
     }
 }
