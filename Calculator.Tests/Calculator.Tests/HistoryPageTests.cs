@@ -29,5 +29,15 @@ namespace Calculator.Tests
         {
             browser.Quit();
         }
+
+        [Test]
+        public void PositiveTestCalculatorButtonWork()
+        {
+            browser.FindElement(By.XPath("//button[text()='Calculator']")).Click();
+            string actual = browser.Url;
+            Assert.AreEqual("http://127.0.0.1:8080/Deposit", actual);
+
+        }
     }
 }
+
