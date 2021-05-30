@@ -60,5 +60,6 @@ namespace Calculator.Tests.Pages
             SelectCurrency(currency);
             Save();
         }
+       
     }
 }
