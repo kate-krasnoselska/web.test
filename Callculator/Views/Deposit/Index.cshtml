@@ -206,7 +206,8 @@
 	}
 
     async function Save() {
-        await new Promise((resolve, reject) => setTimeout(resolve, 500));
+        await new Promise((resolve, reject) => setTimeout(resolve, 1000));
+
         var amount = Number(document.getElementById('amount').value);
         var days = Number(document.getElementById('term').value);
         var percent = Number(document.getElementById('percent').value);
