@@ -48,14 +48,15 @@ namespace Calculator.Tests
         [Test]
         public void ClearBtnWork()
         {
+            // NEED HELP: how to say that historyPage.CalculatedData is dissapeared?
+            // 'no such element' 
             HistoryPage historyPage = new HistoryPage(browser);
             //historyPage.CalculatedData.GetAttribute("textContent");
 
             historyPage.ClearBtn.Click();
 
             Assert.IsFalse(historyPage.CalculatedData.Displayed);
-            //Assert.IsFalse(calculatorPage.CalculateBtn.Enabled);
-            //Assert.AreEqual(" ", actualCalculatedData);
+           
         }
 
         [Test]

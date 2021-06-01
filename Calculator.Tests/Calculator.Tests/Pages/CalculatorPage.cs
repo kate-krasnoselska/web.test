@@ -39,7 +39,7 @@ namespace Calculator.Tests.Pages
             CalculateBtn.Click();
             new WebDriverWait(driver, TimeSpan.FromSeconds(10))
             .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(CalculateBtnLocator));
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
         }
 
 
