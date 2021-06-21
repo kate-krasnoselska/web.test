@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Calculator.Tests.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -52,6 +53,7 @@ namespace Calculator.Tests
             // 'no such element' 
             HistoryPage historyPage = new HistoryPage(browser);
             //historyPage.CalculatedData.GetAttribute("textContent");
+            Thread.Sleep (1000);
 
             historyPage.ClearBtn.Click();
 
