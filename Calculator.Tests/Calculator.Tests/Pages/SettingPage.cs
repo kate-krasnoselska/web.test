@@ -61,4 +61,5 @@ namespace Calculator.Tests.Pages
             Save();
         }
     }
+
 }
