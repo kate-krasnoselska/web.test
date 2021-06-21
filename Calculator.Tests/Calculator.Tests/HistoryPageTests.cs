@@ -53,8 +53,7 @@ namespace Calculator.Tests
             // 'no such element' 
             HistoryPage historyPage = new HistoryPage(browser);
             //historyPage.CalculatedData.GetAttribute("textContent");
-            Thread.Sleep (1000);
-
+   
             historyPage.ClearBtn.Click();
 
             Assert.IsFalse(historyPage.CalculatedData.Displayed);
@@ -83,7 +82,17 @@ namespace Calculator.Tests
             Assert.AreEqual("100", actualCalculatedData);
         }
 
+        [Test]
+        public void CalculateRowsAmount()
+        {
+            HistoryPage historyPage = new HistoryPage(browser);
+            historyPage.RowCount.ToString();
 
+            string actual = historyPage.RowCount.ToString();
+
+            Assert.AreEqual("1", historyPage.RowCount.ToString());
+        }
+             
 
       
     }

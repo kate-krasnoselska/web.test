@@ -24,7 +24,7 @@ namespace Calculator.Tests.Pages
 
         //many
         public int RowCount => driver.FindElements(By.XPath("//tr[@class = 'data']")).Count;
-
+        
         //select specific row
         public List<string> GetRowData(int rowNumber)
         {
