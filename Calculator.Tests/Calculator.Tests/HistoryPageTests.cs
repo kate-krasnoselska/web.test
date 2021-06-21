@@ -92,7 +92,6 @@ namespace Calculator.Tests
 
             Assert.AreEqual("1", historyPage.RowCount.ToString());
         }
-             
 
       
     }
