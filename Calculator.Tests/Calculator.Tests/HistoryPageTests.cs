@@ -88,12 +88,13 @@ namespace Calculator.Tests
             HistoryPage historyPage = new HistoryPage(browser);
             historyPage.RowCount.ToString();
 
-            string actual = historyPage.RowCount.ToString();
+            //string actual = historyPage.RowCount.ToString();
 
             Assert.AreEqual("1", historyPage.RowCount.ToString());
+            // I think we should clean the results before the test start. it is not cleared 
         }
 
-      
+        // how to calculate many rows at one time?
     }
 }
 
