@@ -16,13 +16,21 @@
     <PackageReference Include="OpenQA.Selenium.Winium" Version="1.0.0.4" />
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
     <PackageReference Include="SpecFlow" Version="3.9.8" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.9.8" />
+    <PackageReference Include="SpecFlow.NUnit.Runners" Version="3.9.8" />
+    <PackageReference Include="SpecRun.Runner" Version="3.9.7" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Pages\" />
+    <Folder Include="Features\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="SpecFlow" />
+    <None Remove="SpecFlow.NUnit" />
+    <None Remove="SpecFlow.NUnit.Runners" />
+    <None Remove="SpecRun.Runner" />
+    <None Remove="Features\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="SpecFlow_LoginPage.feature">
@@ -31,8 +39,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="SpecFlow_LoginPage.feature.cs">
-      <DependentUpon>SpecFlow_LoginPage.feature</DependentUpon>
-    </Compile>
+    <SpecFlowFeatureFiles Update="Features\LoginPage.feature">
+      <Visible>False</Visible>
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LoginPage.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 </Project>
