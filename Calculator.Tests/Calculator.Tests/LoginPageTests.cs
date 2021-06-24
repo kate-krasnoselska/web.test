@@ -72,7 +72,7 @@ namespace Calculator.Tests
         {
 
             LoginPage loginPage = new LoginPage(browser);
-            loginPage.Login(" ", " ");
+            loginPage.Login("", "");
 
             Assert.AreEqual("User name and password cannot be empty!", loginPage.ErrorMessage);
         }
@@ -82,7 +82,7 @@ namespace Calculator.Tests
         {
 
             LoginPage loginPage = new LoginPage(browser);
-            loginPage.Login(" ", "newyork1");
+            loginPage.Login("", "newyork1");
 
             Assert.AreEqual("User name and password cannot be empty!", loginPage.ErrorMessage);
         }
@@ -92,7 +92,7 @@ namespace Calculator.Tests
         {
 
             LoginPage loginPage = new LoginPage(browser);
-            loginPage.Login(" ", "newyork1");
+            loginPage.Login("test", "");
 
             Assert.AreEqual("User name and password cannot be empty!", loginPage.ErrorMessage);
         }
