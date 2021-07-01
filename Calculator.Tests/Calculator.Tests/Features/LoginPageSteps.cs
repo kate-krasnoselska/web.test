@@ -30,7 +30,7 @@ namespace Calculator.Tests.Features
         }
 
         [Then("I see error message '(.*)'")]
-        public void VerifyErrormessage(string message)
+        public void VerifyErrorMessage(string message)
         {
             Assert.AreEqual(message, new LoginPage(WebDriver.Driver).ErrorMessage);
         }
