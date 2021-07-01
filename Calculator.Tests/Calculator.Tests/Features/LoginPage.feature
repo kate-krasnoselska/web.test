@@ -16,14 +16,25 @@ Scenario: Negative Login with empty User name
 	When I click Login button
 	Then I see error message 'User name and password cannot be empty!'
 
-Scenario: Negative Login with Caps Lock enabled
-	Given I have entered 'test' into User field
-		And I have entered 'NEWYORK1' into Password field
-	When I click Login button
-	Then I see error message 'Incorrect password!'
-
 Scenario: Negative Login with empty Password field
 	Given I have entered 'test' into User field
 		And I have entered '' into Password field
 	When I click Login button
 	Then I see error message 'User name and password cannot be empty!'
+
+Scenario: Negative Login with Caps Lock login field
+	Given I have entered 'test' into User field
+		And I have entered 'NEWYORK1' into Password field
+	When I click Login button
+	Then I see error message 'Incorrect password!'
+
+Scenario: Negative Login with Caps Lock password field
+	Given I have entered 'TEST' into User field
+		And I have entered 'newyork1' into Password field
+	When I click Login button
+	Then I see error message 'Incorrect password!'
+
+
+
+
+
