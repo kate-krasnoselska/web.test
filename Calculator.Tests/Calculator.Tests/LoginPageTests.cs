@@ -43,7 +43,7 @@ namespace Calculator.Tests
         public void IncorrectLoginTest()
         {
             LoginPage loginPage = new LoginPage(browser);
-            loginPage.Login("test1", "newy ork1");
+            loginPage.Login("test1", "newyork1");
 
             Assert.AreEqual("'test1' user doesn't exist!", loginPage.ErrorMessage);
         }
