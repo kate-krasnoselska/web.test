@@ -45,7 +45,7 @@ namespace Calculator.Tests
             LoginPage loginPage = new LoginPage(browser);
             loginPage.Login("test1", "newyork1");
 
-            Assert.AreEqual("'test1' user doesn't exist!", loginPage.ErrorMessage);
+            Assert.AreEqual("Incorrect user name!", loginPage.ErrorMessage);
         }
 
         [Test]
