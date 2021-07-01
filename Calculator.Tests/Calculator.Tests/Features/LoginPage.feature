@@ -58,6 +58,12 @@ Scenario: Negative Login with space in User name
 	When I click Login button
 	Then I see error message 'Incorrect user name!'
 
+Scenario: Negative Login with incorrect User name and Incorrect Password
+	Given I have entered 'test1' into User field
+		And I have entered 'newy ork1' into Password field
+	When I click Login button
+	Then I see error message ''test1' user doesn't exist!'
+
 
 
 
