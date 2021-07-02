@@ -44,5 +44,20 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>LoginPage.feature.cs</LastGenOutput>
     </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\SettingsPage.feature">
+      <Visible>False</Visible>
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SettingsPage.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\SettingsPageSteps.feature">
+      <Visible>False</Visible>
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SettingsPageSteps.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Features\SettingsPage.feature.cs">
+      <DependentUpon>SettingsPage.feature</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
