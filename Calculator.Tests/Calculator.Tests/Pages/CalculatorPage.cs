@@ -17,14 +17,14 @@ namespace Calculator.Tests.Pages
             this.driver = driver;
         }
 
-
-        public IWebElement CalculateBtn => driver.FindElement(By.XPath("//button [@id = 'calculateBtn']"));
-
         private By CalculateBtnLocator = By.XPath("//button [@id = 'calculateBtn']");
 
         public IWebElement CalculateBtn => driver.FindElement(CalculateBtnLocator);
 
+        //public IWebElement CalculateBtn => driver.FindElement(By.XPath("//button [@id = 'calculateBtn']"));
+
         public IWebElement SettingsBtn => driver.FindElement(By.XPath("//button[text()='Settings']"));
+
 
         public SettingsPage OpenSettingsPage()
         {
@@ -36,16 +36,19 @@ namespace Calculator.Tests.Pages
         public void Calculate()
         {
             CalculateBtn.Click();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+            .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(CalculateBtnLocator));
 
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
         }
 
         public string CalcBtnDisabled => driver.FindElement(By.XPath("//button [@id = 'calculateBtn']")).GetAttribute("value");
 
-            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
-            .Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(CalculateBtnLocator));
-            Thread.Sleep(1000);
-        }
+        //{
+           // new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+            //.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(CalculateBtnLocator));
+          //  Thread.Sleep(1000);
+        //}
 
 
         private SelectElement DaySelect => new SelectElement (element: driver.FindElement(By.XPath("//select [@id = 'day']")));

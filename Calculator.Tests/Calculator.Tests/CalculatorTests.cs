@@ -240,12 +240,9 @@ namespace Calculator.Tests
         [Test]
         public void PositiveTestMaxInterestRate100()
         {
-
-            new CalculatorPage(browser)
-                .EnterCalculatorData ("100000", "100", "365", true);
-
-            new CalculatorPage(browser).Calculate();
-
+            CalculatorPage calculatorPage = new CalculatorPage(browser);
+            calculatorPage.EnterCalculatorData ("100000", "100", "365", true);
+            calculatorPage.Calculate();
 
             Thread.Sleep(1000);
 
