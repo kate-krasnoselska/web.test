@@ -19,6 +19,10 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore
+      
+    - name: Add WebBuildTools
+      run: vs_BuildTools.exe --add Microsoft.VisualStudio.Workload.WebBuildTools --passive
+
     - name: Build
       run: dotnet build --configuration Release
     - name: Test
