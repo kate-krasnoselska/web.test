@@ -21,7 +21,7 @@ jobs:
       run: dotnet restore
       
     - name: Add WebBuildTools
-      run: vs_BuildTools.exe --add Microsoft.VisualStudio.Workload.WebBuildTools --passive
+      run: choco install visualstudio2017-workload-webbuildtools
 
     - name: Build
       run: dotnet build --configuration Release
