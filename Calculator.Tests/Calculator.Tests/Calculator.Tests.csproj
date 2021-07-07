@@ -1,23 +1,48 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="3.13.1" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="NUnit" Version="3.13.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="90.0.4430.2400" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="91.0.4472.10100" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="OpenQA.Selenium.Winium" Version="1.0.0.4" />
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
+    <PackageReference Include="SpecFlow" Version="3.9.8" />
+    <PackageReference Include="SpecFlow.NUnit" Version="3.9.8" />
+    <PackageReference Include="SpecFlow.NUnit.Runners" Version="3.9.8" />
+    <PackageReference Include="SpecRun.Runner" Version="3.9.7" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Pages\" />
+    <Folder Include="Features\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="SpecFlow" />
+    <None Remove="SpecFlow.NUnit" />
+    <None Remove="SpecFlow.NUnit.Runners" />
+    <None Remove="SpecRun.Runner" />
+    <None Remove="Features\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="SpecFlow_LoginPage.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SpecFlow_LoginPage.feature.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="Features\LoginPage.feature">
+      <Visible>False</Visible>
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>LoginPage.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
   </ItemGroup>
 </Project>

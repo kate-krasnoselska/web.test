@@ -23,7 +23,11 @@ namespace Calculator.Tests.Pages
 
         public IWebElement LoginBtn => driver.FindElement(By.Id("loginBtn"));
 
-        public void Login() => Login("test", "newyork1");
+        public CalculatorPage Login()
+        {
+            Login("test", "newyork1");
+            return new CalculatorPage(driver);
+        }
 
         public void Login(string login, string password)
         {

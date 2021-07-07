@@ -43,9 +43,9 @@ namespace Calculator.Tests
         public void IncorrectLoginTest()
         {
             LoginPage loginPage = new LoginPage(browser);
-            loginPage.Login("test1", "newy ork1");
+            loginPage.Login("test1", "newyork1");
 
-            Assert.AreEqual("'test1' user doesn't exist!", loginPage.ErrorMessage);
+            Assert.AreEqual("Incorrect user name!", loginPage.ErrorMessage);
         }
 
         [Test]
@@ -72,7 +72,9 @@ namespace Calculator.Tests
         {
 
             LoginPage loginPage = new LoginPage(browser);
-            loginPage.Login(" ", " ");
+
+            loginPage.Login("", "");
+
 
             Assert.AreEqual("User name and password cannot be empty!", loginPage.ErrorMessage);
         }
@@ -82,7 +84,9 @@ namespace Calculator.Tests
         {
 
             LoginPage loginPage = new LoginPage(browser);
-            loginPage.Login(" ", "newyork1");
+
+            loginPage.Login("", "newyork1");
+
 
             Assert.AreEqual("User name and password cannot be empty!", loginPage.ErrorMessage);
         }
@@ -92,7 +96,9 @@ namespace Calculator.Tests
         {
 
             LoginPage loginPage = new LoginPage(browser);
-            loginPage.Login(" ", "newyork1");
+
+            loginPage.Login("test", "");
+
 
             Assert.AreEqual("User name and password cannot be empty!", loginPage.ErrorMessage);
         }
